@@ -1,5 +1,4 @@
 import './Menu.css';
-import { Link } from 'react-router-dom';
 import MenuItem from '../MenuItem/MenuItem';
 
 function Menu({ isClicked }) {
