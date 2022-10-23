@@ -1,6 +1,7 @@
 import './Burger.css';
 
 const Burger = ({ isClicked, onMenuClick }) => {
+
     return (
         <button
             type="button"
@@ -10,6 +11,7 @@ const Burger = ({ isClicked, onMenuClick }) => {
         >
         </button>
     );
+    
 };
 
 export default Burger;

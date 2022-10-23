@@ -1,7 +1,7 @@
 import './Header.css';
-import { Switch, Route, Link } from 'react-router-dom';
+import { Switch, Route } from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
-import logo from '../../images/logo.svg'
+import Logo from '../Logo/Logo';
 
 function Header() {
 
@@ -12,38 +12,31 @@ function Header() {
     ];
 
     return (
+
         <Switch>
+
             <Route path={paths}>
                 <>
                     <header className='header'>
-                        <Link to="/">
-                            <img
-                                className="logo"
-                                src={logo}
-                                alt="Логотип"
-                            />
-                        </Link>
+                        <Logo />
                         <Navigation />
                     </header>
                 </>
             </Route>
+
             <Route exact path='/'>
                 <>
                     <header className='header header__main-page'>
-                        <Link to="/">
-                            <img
-                                className="logo"
-                                src={logo}
-                                alt="Логотип"
-                            />
-                        </Link>
+                        <Logo />
                         <Navigation
                             isPageMain={true}
                         />
                     </header>
                 </>
             </Route>
+
         </Switch>
+        
     );
 
 };

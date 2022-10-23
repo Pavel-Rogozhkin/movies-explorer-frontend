@@ -2,7 +2,7 @@ import './Navigation.css';
 import { useState } from 'react';
 import AuthNav from '../AuthNav/AuthNav';
 import Burger from '../Burger/Burger';
-// import Menu from '../Menu/Menu';
+import Menu from '../Menu/Menu';
 
 function Navigation({ isPageMain }) {
 
@@ -19,9 +19,9 @@ function Navigation({ isPageMain }) {
                 <AuthNav />
             ) : (
                 <>
-                    {/* <Menu
+                    <Menu
                         isClicked={isClicked}
-                    /> */}
+                    />
                     <Burger
                         isClicked={isClicked}
                         onMenuClick={handleMenuClick}
