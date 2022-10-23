@@ -1,6 +1,6 @@
 import './Header.css';
-import { Switch, Route, Link } from 'react-router-dom';
-import Navigation from '../Navigation/Navigation';
+import { Routes, Route, Link } from 'react-router-dom';
+// import Navigation from '../Navigation/Navigation';
 import logo from '../../images/logo.svg'
 
 function Header () {
@@ -12,7 +12,7 @@ function Header () {
     ];
 
     return (
-        <Switch>
+        <Routes>
             <Route path={paths}>
                 <header className='header'>
                     <Link to="/">
@@ -22,11 +22,11 @@ function Header () {
                             alt="Логотип"
                         />
                     </Link>
-                    <Navigation />
+                    {/* <Navigation /> */}
                 </header>
             </Route>
-            <Route path={paths}>
-                <header className='header'>
+            <Route exact path='/'>
+                <header className='header header__main-page'>
                     <Link to="/">
                         <img
                             className="logo"
@@ -34,10 +34,12 @@ function Header () {
                             alt="Логотип"
                         />
                     </Link>
-                    <Navigation />
+                    {/* <Navigation
+                        isPageMain={true}
+                    /> */}
                 </header>
             </Route>
-        </Switch>
+        </Routes>
     );
 
 };

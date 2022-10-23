@@ -1,4 +1,4 @@
-import { Switch, Route } from 'react-router-dom';
+import { Routes, Route } from 'react-router-dom';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
@@ -11,38 +11,42 @@ import Footer from '../Footer/Footer';
 function App() {
     return (
         <>
-            <Header />
+            <div className='bg-color'>
 
-            <Switch>
+                <Header />
 
-                <Route exact path='/'>
-                    <Main />
-                </Route>
+                <Routes>
+
+                    <Route exact path='/'>
+                        <Main />
+                    </Route>
 
 
-                <Route path='/movies'>
-                    <Movies />
-                </Route>
-                
-                <Route path='/saved-movies'>
-                    <SavedMovies />
-                </Route>
-                
-                <Route path='/profile'>
-                    <Profile />
-                </Route>
-                
-                <Route path='/signin'>
-                    <Login />
-                </Route>
-                
-                <Route path='/signup'>
-                    <Register />
-                </Route>
+                    <Route path='/movies'>
+                        <Movies />
+                    </Route>
+                    
+                    <Route path='/saved-movies'>
+                        <SavedMovies />
+                    </Route>
+                    
+                    <Route path='/profile'>
+                        <Profile />
+                    </Route>
+                    
+                    <Route path='/signin'>
+                        <Login />
+                    </Route>
+                    
+                    <Route path='/signup'>
+                        <Register />
+                    </Route>
 
-            </Switch>
+                </Routes>
 
-            <Footer />
+                <Footer />
+
+            </div>
         </>
     );
 };
