@@ -12,7 +12,7 @@ import Header from '../Header/Header';
 function App() {
     return (
         <>
-            <div className='bg-color'>
+            <div className='body'>
 
                 <Header />
 

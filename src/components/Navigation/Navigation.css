@@ -1,0 +1,8 @@
+.navigation {
+    flex-grow: 1;
+    text-align: end;
+}
+  
+.navigation__main-page {
+    flex-grow: 0;
+}

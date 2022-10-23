@@ -1,6 +1,6 @@
 import './Header.css';
 import { Switch, Route, Link } from 'react-router-dom';
-// import Navigation from '../Navigation/Navigation';
+import Navigation from '../Navigation/Navigation';
 import logo from '../../images/logo.svg'
 
 function Header() {
@@ -23,7 +23,7 @@ function Header() {
                                 alt="Логотип"
                             />
                         </Link>
-                        {/* <Navigation /> */}
+                        <Navigation />
                     </header>
                 </>
             </Route>
@@ -37,9 +37,9 @@ function Header() {
                                 alt="Логотип"
                             />
                         </Link>
-                        {/* <Navigation
+                        <Navigation
                             isPageMain={true}
-                        /> */}
+                        />
                     </header>
                 </>
             </Route>
