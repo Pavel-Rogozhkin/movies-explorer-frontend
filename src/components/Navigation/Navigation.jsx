@@ -1,17 +1,17 @@
 import './Navigation.css';
-// import { useState } from 'react';
+import { useState } from 'react';
 import AuthNav from '../AuthNav/AuthNav';
-// import Burger from '../BurgerBtn/Burger';
-// import Menu from '../NavMenu/Menu';
+import Burger from '../Burger/Burger';
+// import Menu from '../Menu/Menu';
 
 function Navigation({ isPageMain }) {
 
     const loggedIn = false;
-    // const [onClick, setOnClick] = useState(false);
+    const [isClicked, setIsClicked] = useState(false);
     
-    // const handleMenuClick = () => {
-    //     setOnClick(!onClick);
-    // };
+    const handleMenuClick = () => {
+        setIsClicked(!isClicked);
+    };
 
     return (
         <nav className={`navigation ${(isPageMain && !loggedIn) && 'navigation__main-page'}`}>
@@ -20,14 +20,12 @@ function Navigation({ isPageMain }) {
             ) : (
                 <>
                     {/* <Menu
-                        isPageMain={isPageMain}
-                        onClick={onClick}
-                    />
-                    <Burger
-                        isPageMain={isPageMain}
-                        onClick={onClick}
-                        onMenuClick={handleMenuClick}
+                        isClicked={isClicked}
                     /> */}
+                    <Burger
+                        isClicked={isClicked}
+                        onMenuClick={handleMenuClick}
+                    />
                 </>
             )}
         </nav>
