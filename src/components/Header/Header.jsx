@@ -1,9 +1,9 @@
 import './Header.css';
-import { Routes, Route, Link } from 'react-router-dom';
+import { Switch, Route, Link } from 'react-router-dom';
 // import Navigation from '../Navigation/Navigation';
 import logo from '../../images/logo.svg'
 
-function Header () {
+function Header() {
 
     const paths = [
         '/movies',
@@ -12,34 +12,38 @@ function Header () {
     ];
 
     return (
-        <Routes>
+        <Switch>
             <Route path={paths}>
-                <header className='header'>
-                    <Link to="/">
-                        <img
-                            className="logo"
-                            src={logo}
-                            alt="Логотип"
-                        />
-                    </Link>
-                    {/* <Navigation /> */}
-                </header>
+                <>
+                    <header className='header'>
+                        <Link to="/">
+                            <img
+                                className="logo"
+                                src={logo}
+                                alt="Логотип"
+                            />
+                        </Link>
+                        {/* <Navigation /> */}
+                    </header>
+                </>
             </Route>
             <Route exact path='/'>
-                <header className='header header__main-page'>
-                    <Link to="/">
-                        <img
-                            className="logo"
-                            src={logo}
-                            alt="Логотип"
-                        />
-                    </Link>
-                    {/* <Navigation
-                        isPageMain={true}
-                    /> */}
-                </header>
+                <>
+                    <header className='header header__main-page'>
+                        <Link to="/">
+                            <img
+                                className="logo"
+                                src={logo}
+                                alt="Логотип"
+                            />
+                        </Link>
+                        {/* <Navigation
+                            isPageMain={true}
+                        /> */}
+                    </header>
+                </>
             </Route>
-        </Routes>
+        </Switch>
     );
 
 };
