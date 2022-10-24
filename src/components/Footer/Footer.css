@@ -1,7 +1,7 @@
 .footer {
     padding: 79px 70px 20px;
     min-height: 172px;
-    background-color: #fafafa;
+    background-color: #202020;
     box-sizing: border-box;
 }
   
@@ -10,14 +10,15 @@
     text-align: center;
     font-size: 13px;
     line-height: 1.23;
-    color: #a0a0a0;
+    color: #8B8B8B;
 }
   
 .footer__container {
     padding-top: 20px;
+    color: #FFF;
+    border-top: 1px solid #424242;
     display: flex;
     justify-content: space-between;
-    border-top: 1px solid #e8e8e8;
 }
   
 .footer__copyright {

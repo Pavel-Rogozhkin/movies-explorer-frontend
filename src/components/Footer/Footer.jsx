@@ -17,6 +17,9 @@ function Footer() {
                 </p>
                 <div className='footer__container'>
                     <p className='footer_copyright'>&#169; {new Date().getFullYear()} </p>
+                    <ul className='footer__list'>
+                        
+                    </ul>
                 </div>
             </footer>
         </Route>
