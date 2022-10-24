@@ -8,7 +8,7 @@ function Menu({ isClicked }) {
             <div className={`${isClicked && 'menu__overlay'}`}>
                 <ul className={`menu__list ${isClicked && 'menu__list_visible'}`}>
                     <MenuItem
-                        exact='exact'
+                        exact={true}
                         to='/'
                         linkText='Главная'
                         isProfile={false}

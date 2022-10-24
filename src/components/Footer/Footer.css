@@ -1,0 +1,28 @@
+.footer {
+    padding: 79px 70px 20px;
+    min-height: 172px;
+    background-color: #fafafa;
+    box-sizing: border-box;
+}
+  
+.footer__text {
+    margin: 0 0 20px;
+    text-align: center;
+    font-size: 13px;
+    line-height: 1.23;
+    color: #a0a0a0;
+}
+  
+.footer__container {
+    padding-top: 20px;
+    display: flex;
+    justify-content: space-between;
+    border-top: 1px solid #e8e8e8;
+}
+  
+.footer__copyright {
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.23;
+}
+  

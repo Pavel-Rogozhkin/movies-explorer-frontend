@@ -1,5 +1,5 @@
 import './Header.css';
-import { Switch, Route } from 'react-router-dom';
+import { Route } from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
 import Logo from '../Logo/Logo';
 
@@ -12,9 +12,7 @@ function Header() {
     ];
 
     return (
-
-        <Switch>
-
+        <>
             <Route path={paths}>
                 <>
                     <header className='header'>
@@ -34,9 +32,7 @@ function Header() {
                     </header>
                 </>
             </Route>
-
-        </Switch>
-        
+        </>
     );
 
 };
