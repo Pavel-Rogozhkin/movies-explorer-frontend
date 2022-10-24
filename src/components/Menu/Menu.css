@@ -1,13 +1,14 @@
+.menu {
+    min-width: auto;
+    min-height: auto;
+}
+
 .menu__list {
     margin: 0;
     padding: 0;
     list-style: none;
     display: flex;
     gap: 16px;
-}
-
-.menu__list_visible {
-    display: flex;
 }
 
 @media screen and (max-width: 768px) {
@@ -28,9 +29,9 @@
         max-width: 520px;
         height: 100%;
         padding: 159px 90px 90px;
-        box-sizing: border-box;
         display: none;
-        background-color: #fff;
+        box-sizing: border-box;
+        background-color: #202020;
         flex-direction: column;
         justify-content: space-between;
         align-items: center;
@@ -45,4 +46,8 @@
         padding: 144px 10px 46px;
         gap: 24px;
     }
+}
+
+.menu__list_visible {
+    display: flex;
 }

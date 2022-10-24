@@ -4,7 +4,7 @@ import MenuItem from '../MenuItem/MenuItem';
 function Menu({ isClicked }) {
 
     return (
-        <nav className='menu'>
+        <div className='menu'>
             <div className={`${isClicked && 'menu__overlay'}`}>
                 <ul className={`menu__list ${isClicked && 'menu__list_visible'}`}>
                     <MenuItem
@@ -28,7 +28,7 @@ function Menu({ isClicked }) {
                     />
                 </ul>
             </div>
-        </nav>
+        </div>
     );
 
 };

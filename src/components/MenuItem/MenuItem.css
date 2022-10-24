@@ -24,7 +24,23 @@
     font-weight: 500;
 }
 
-
+.menu__profile {
+    padding: 8px 20px 8px 20px;
+    font-size: 14px;
+    line-height: 16px;
+    background-color: #313131;
+    color: #FFF;
+    text-align: center;
+    text-decoration: none;
+    border: 2px solid #313131;
+    border-radius: 50px;
+    transition: opacity .3s ease-in-out;
+    opacity: 1;
+}
+  
+.menu__profile:hover {
+    opacity: 0.7;
+}
 
 @media screen and (max-width: 768px) {
   
@@ -54,6 +70,6 @@
         display: block;
         position: absolute;
         bottom: -5px;
-        background-color: #000;
+        background-color: #FFF;
     }
 }

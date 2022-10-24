@@ -1,4 +1,6 @@
 .navigation {
+    min-width: auto;
+    min-height: auto;
     flex-grow: 1;
     text-align: end;
 }
