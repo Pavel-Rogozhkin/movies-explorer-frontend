@@ -1,4 +1,4 @@
-import './Caption/Caption';
+import './Caption.css';
 
 function Caption({ text }) {
     
