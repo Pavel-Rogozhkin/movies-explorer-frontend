@@ -13,18 +13,33 @@
 }
 
 .input {
-    width: 100%;
     border: none;
     border-bottom: 1px solid #424242;
 }
 
 .input_place_search {
-    height: 72px;
     padding: 25px 0 25px 25px;
     border: 1.5px solid rgba(170, 170, 170, 0.2);
     border-radius: 8px;
     font-size: 18px;
     line-height: 20px;
+    background-color: #202020;
+}
+
+.input_type_error {
+    color: #EE3465;
+}
+
+.input__error {
+    display: block;
+    height: 12px;
+    font-size: 10px;
+    line-height: 12px;
+    color: #EE3465;
+}
+
+.input__error_place_search {
+    display: none;
 }
 
 @media screen and (max-width: 425px) {
