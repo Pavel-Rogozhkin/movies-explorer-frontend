@@ -1,6 +1,7 @@
+import Button from '../Button/Button';
 import './Form.css';
 
-function Form({ name, children }) {
+function Form({ name, children, place, buttonText }) {
 
     return (
         <form
@@ -8,6 +9,10 @@ function Form({ name, children }) {
             name={name}
         >
             {children}
+            <Button
+                place={place}
+                buttonText={buttonText}
+            />
         </form>
     );
 
