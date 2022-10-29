@@ -2,7 +2,7 @@ import './App.css';
 import { Switch, Route } from 'react-router-dom';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
-// import Movies from '../Movies/Movies';
+import Movies from '../Movies/Movies';
 // import SavedMovies from '../SavedMovies/SavedMovies';
 // import Profile from '../Profile/Profile';
 // import Login from '../Login/Login';
@@ -18,11 +18,11 @@ function App() {
                     <Main />
                 </Route>
 
-                {/* <Route path='/movies'>
+                <Route path='/movies'>
                     <Movies />
                 </Route>
                 
-                <Route path='/saved-movies'>
+                {/* <Route path='/saved-movies'>
                     <SavedMovies />
                 </Route>
                 
