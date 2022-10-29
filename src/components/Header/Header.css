@@ -9,18 +9,18 @@
     align-items: center;
     gap: 44px;
 }
-  
+
 .header__main-page {
     background-color: #073042;
     justify-content: space-between;
 }
-  
+
 @media screen and (max-width: 1023px) {
     .header {
         padding: 0 30px;
     }
 }
-  
+
 @media screen and (max-width: 420px) {
     .header {
         padding: 0 14px;

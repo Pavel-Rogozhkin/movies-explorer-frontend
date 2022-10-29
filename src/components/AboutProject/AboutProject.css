@@ -31,7 +31,7 @@
 .about-project__line_type_left {
     max-width: 20%;
 }
-  
+
 .about-project__span_type_left {
     color:#000;
     background-color: #3DDC84;
@@ -67,7 +67,7 @@
         max-width: 21%;
     }
 }
-  
+
 @media screen and (max-width: 767px) {
     .about-project {
         padding: 80px 30px;
@@ -94,7 +94,7 @@
         line-height: 14px;
     }
 }
-  
+
 @media screen and (max-width: 425px) {
     .about-project {
         padding: 70px 18px;
@@ -109,7 +109,7 @@
     .about-project__diploma {
         margin-top: 60px;
     }
-  
+
     .about-project__line_type_left {
         max-width: 100px;
     }

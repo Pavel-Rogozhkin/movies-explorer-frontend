@@ -6,7 +6,7 @@
     font-weight: 400;
     border-bottom: 1px solid #DADADA;
 }
-  
+
 @media screen and (max-width: 425px) {
     .caption {
         padding-bottom: 28px;
