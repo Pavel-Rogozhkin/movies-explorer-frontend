@@ -31,8 +31,10 @@
 }
 
 .movie-item__img {
+    max-width: 100%;
     width: 360px;
     height: 200px;
+
 }
 
 .movie-item__button_type_save {
