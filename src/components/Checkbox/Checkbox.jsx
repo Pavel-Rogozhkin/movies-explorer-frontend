@@ -20,7 +20,7 @@ function Checkbox() {
             />
             <label
                 className='checkbox__label'
-                for='shortMoviesFilter'
+                htmlFor='shortMoviesFilter'
             />
             <p className='checkbox__text'>
                 Короткометражки

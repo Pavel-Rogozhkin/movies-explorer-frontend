@@ -14,7 +14,7 @@ function Input({
         <div className='input__container'>
             <label
                 className={`input__label ${place ? `input__label_place_${place}` : ''}`}
-                for={name}
+                htmlFor={name}
             >
                 {label}
             </label>
