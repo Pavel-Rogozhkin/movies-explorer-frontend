@@ -1,17 +1,25 @@
 import './MoviesList.css';
-import MoviesSet from '../MoviesSet/MoviesSet';
+import moviesArray from '../../utils/moviesArray';
+import MovieItem from '../MovieItem/MovieItem';
 
 function MoviesList() {
 
+    console.log(moviesArray.length);
+
     return (
-        <div className='movies-list__container'>
+        <section className='movies-list__container'>
             <ul className='movies-list'>
-                <MoviesSet />
+                {moviesArray.map(movie => (
+                    <MovieItem
+                        key={movie._id}
+                        movie={movie}
+                    />
+                ))}
             </ul>
             <button className='movies-list__more'>
                 Ещё
             </button>
-        </div>
+        </section>
     );
 
 };
