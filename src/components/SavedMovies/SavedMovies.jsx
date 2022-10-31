@@ -7,7 +7,10 @@ function SavedMovies() {
     return (
         <>
             <SearchForm />
-            <MoviesList />
+            <MoviesList 
+                isButtonMoreUnvisible={true}
+                isSaveButtonTypeDelete={true}
+            />
         </>
     );
 

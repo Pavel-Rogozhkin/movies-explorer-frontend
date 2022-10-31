@@ -33,6 +33,10 @@
     color: #FFF;
 }
 
+.movies-list__more_unvisible {
+    visibility: hidden;
+}
+
 @media screen and (max-width: 1170px) {
     .movies-list__container {
         padding: 70px 30px;

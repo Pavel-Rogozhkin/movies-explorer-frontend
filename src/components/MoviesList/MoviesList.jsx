@@ -2,7 +2,7 @@ import './MoviesList.css';
 import moviesArray from '../../utils/moviesArray';
 import MovieItem from '../MovieItem/MovieItem';
 
-function MoviesList() {
+function MoviesList({ isButtonMoreUnvisible, isSaveButtonTypeDelete }) {
 
     console.log(moviesArray.length);
 
@@ -13,10 +13,11 @@ function MoviesList() {
                     <MovieItem
                         key={movie._id}
                         movie={movie}
+                        isSaveButtonTypeDelete={isSaveButtonTypeDelete}
                     />
                 ))}
             </ul>
-            <button className='movies-list__more'>
+            <button className={`movies-list__more ${isButtonMoreUnvisible ? 'movies-list__more_unvisible' : ''}`}>
                 Ещё
             </button>
         </section>
