@@ -26,7 +26,7 @@
 }
 
 .button_place_profile {
-    padding: 220px 0 16px 0;
+    margin: 220px 0 16px 0;
     min-width: 250px;
     align-self: center;
     background: transparent;
@@ -42,4 +42,10 @@
     color: #EE3465;
     font-size: 13px;
     line-height: 16px;
+}
+
+@media screen and (max-width: 425px) {
+    .button_place_profile {
+        margin: 380px 0 16px 0;
+    }
 }

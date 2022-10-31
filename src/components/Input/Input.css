@@ -15,9 +15,11 @@
 .input__label_place_profile {
     position: absolute;
     top: 5px;
+    left: calc(50% - 235px);
     font-size: 11px;
-    line-height: 1.18;
+    line-height: 13px;
     font-weight: 500;
+    color: #FFF;
 }
 
 .input {
@@ -36,10 +38,13 @@
 
 .input_place_profile {
     padding: 5px 0 16px 60px;
+    align-self: center;
+    width: 410px;
     text-align: right;
-    background-color: transparent;
+    background-color: #202020;
+    color: #FFF;
     font-size: 11px;
-    line-height: 1.18;
+    line-height: 13px;
 }
 
 .input_type_error {
@@ -56,6 +61,18 @@
 
 .input__error_place_search {
     display: none;
+}
+
+@media screen and (max-width: 559px) {
+    .input_place_profile {
+        margin: 0 30px 0px 30px;
+        padding: 0 0px 16px 0px;
+        width: 260px;
+    }
+
+    .input__label_place_profile {
+        left: calc(50% - 130px);
+    }
 }
 
 @media screen and (max-width: 425px) {
