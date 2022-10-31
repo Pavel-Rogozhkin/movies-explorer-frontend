@@ -24,3 +24,22 @@
     line-height: 18px;
     font-weight: 500;
 }
+
+.button_place_profile {
+    padding: 220px 0 16px 0;
+    min-width: 250px;
+    align-self: center;
+    background: transparent;
+    color: #FFF;
+    font-size: 13px;
+    line-height: 16px;
+}
+
+.button_place_logout {
+    min-width: 250px;
+    align-self: center;
+    background: transparent;
+    color: #EE3465;
+    font-size: 13px;
+    line-height: 16px;
+}
