@@ -44,11 +44,11 @@ function Register() {
                 />
             </Form>
             <div className='register__flex'>
-                <span className='register__caption'>
+                <span className='register__caption register__text'>
                     Уже зарегистрированы?
                 </span>
                 <Link
-                    className='register__link'
+                    className='register__link register__text'
                     to='/signin'
                 >
                     Войти

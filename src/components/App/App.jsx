@@ -5,8 +5,8 @@ import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import Profile from '../Profile/Profile';
-// import Login from '../Login/Login';
-// import Register from '../Register/Register';
+import Register from '../Register/Register';
+import Login from '../Login/Login';
 import Footer from '../Footer/Footer';
 
 function App() {
@@ -35,11 +35,9 @@ function App() {
                     <Register />
                 </Route>
 
-                {/*
                 <Route path='/signin'>
                     <Login />
                 </Route>
-                */}
             </Switch>
             <Footer />
         </>
