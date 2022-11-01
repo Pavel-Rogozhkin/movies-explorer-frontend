@@ -10,6 +10,7 @@ import Profile from '../Profile/Profile';
 import Footer from '../Footer/Footer';
 
 function App() {
+
     return (
         <>
             <Header />
@@ -30,18 +31,21 @@ function App() {
                     <Profile />
                 </Route>
                 
-                {/* <Route path='/signin'>
-                    <Login />
-                </Route>
-                
                 <Route path='/signup'>
                     <Register />
-                </Route> */}
+                </Route>
+
+                {/*
+                <Route path='/signin'>
+                    <Login />
+                </Route>
+                */}
             </Switch>
             <Footer />
         </>
 
     );
+
 };
 
 export default App;

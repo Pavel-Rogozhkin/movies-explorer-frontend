@@ -7,16 +7,16 @@ function MenuItem({ exact, to, linkText, isProfile }) {
         <li className='menu__item'>
             {isProfile ?
                 <Link
-                    to='/profile'
                     className='menu__profile'
+                    to='/profile'
                 >
                     Аккаунт
                 </Link>
                 :
                 <NavLink
+                    className='menu__link'
                     exact={exact}
                     to={to}
-                    className='menu__link'
                     activeClassName='menu__link_active'
                 >
                     {linkText}

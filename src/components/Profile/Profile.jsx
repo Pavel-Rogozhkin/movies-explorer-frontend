@@ -1,6 +1,6 @@
 import './Profile.css';
-import Input from '../Input/Input';
 import Form from '../Form/Form';
+import Input from '../Input/Input';
 import Button from '../Button/Button';
 
 function Profile() {
