@@ -1,13 +1,13 @@
 .not-found {
-    height: 100vh;
     display: flex;
     flex-direction: column;
-    justify-content: center;
     align-items: center;
+    background-color: #202020;
 }
 
 .not-found__code {
-    padding: 186px 0 5px 0;
+    margin: 0;
+    padding: 246px 0 5px 0;
     font-size: 140px;
     line-height: 169px;
 }
@@ -19,6 +19,7 @@
 }
 
 .not-found__button {
+    padding-bottom: 60px;
     background-color: transparent;
     border: none;
     cursor: pointer;
@@ -27,11 +28,13 @@
     color: #4285F4;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1023px) {
     .not-found__code {
-        padding: 200px 0 7px 0;
-        font-size: 100px;
-        line-height: 121px;
+        padding-top: 408px;
+    }
+
+    .not-found__button {
+        padding-bottom: 222px;
     }
 
     .not-found__description {
@@ -48,9 +51,13 @@
 
 @media screen and (max-width: 425px) {
     .not-found__code {
-        padding: 300px 0 10px 0;
+        padding: 329px 0 10px;
         font-size: 80px;
         line-height: 97px;
+    }
+
+    .not-found__button {
+        padding-bottom: 30px;
     }
 
     .not-found__description {
