@@ -22,6 +22,20 @@
     color: #FFF;
 }
 
+.input__label_place_register {
+    padding-top: 12px;
+    font-size: 10px;
+    line-height: 12px;
+    color: #8B8B8B;
+}
+
+.input__label_place_login {
+    padding-top: 12px;
+    font-size: 10px;
+    line-height: 12px;
+    color: #8B8B8B;
+}
+
 .input {
     border: none;
     border-bottom: 1px solid #424242;
@@ -38,13 +52,33 @@
 
 .input_place_profile {
     padding: 5px 0 16px 60px;
-    align-self: center;
     width: 410px;
+    align-self: center;
     text-align: right;
     background-color: #202020;
     color: #FFF;
     font-size: 11px;
     line-height: 13px;
+}
+
+.input_place_register {
+    padding: 5px 0 10px;
+    text-align: left;
+    background-color: #202020;
+    color: #FFF;
+    font-size: 14px;
+    line-height: 17px;
+    font-weight: 400;
+}
+
+.input_place_login {
+    padding: 5px 0 10px;
+    text-align: left;
+    background-color: #202020;
+    color: #FFF;
+    font-size: 14px;
+    line-height: 17px;
+    font-weight: 400;
 }
 
 .input_type_error {

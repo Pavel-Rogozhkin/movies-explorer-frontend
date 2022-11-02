@@ -1,5 +1,7 @@
 import './Register.css';
 import Logo from '../Logo/Logo';
+import Form from '../Form/Form';
+import Input from '../Input/Input';
 import { Link } from 'react-router-dom';
 
 function Register() {
@@ -38,7 +40,7 @@ function Register() {
                     name='password'
                     label='Пароль'
                     type='password'
-                    value=''
+                    value='4324234234'
                     placeholder='Пароль'
                     errorMessage='Что-топошло не так...'
                 />

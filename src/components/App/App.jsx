@@ -40,8 +40,10 @@ function App() {
                     <Login />
                 </Route>
 
-                <Route path='*'>
-                    <NotFound />
+                <Route
+                    path='*'
+                    component={NotFound}
+                >
                 </Route>
             </Switch>
             <Footer />
