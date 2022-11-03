@@ -10,7 +10,7 @@
 
 .movie-item__info {
     padding: 0;
-    width: 350px;
+    width: 100%;
     display: flex;
     justify-content: space-between;
 }
@@ -79,6 +79,7 @@
 
 @media screen and (max-width: 425px) {
     .movie-item__img {
+        max-width: 300px;
         height: 168px;
     }
 }
