@@ -1,4 +1,5 @@
 import './Promo.css';
+import web from '../../images/web.svg'
 
 function Promo() {
 
@@ -19,6 +20,11 @@ function Promo() {
                         Узнать больше
                     </a>
                 </div>
+                <img
+                    className='promo__img'
+                    src={web}
+                    alt='web'
+                />
             </div>
         </section>
     );
