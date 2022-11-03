@@ -9,7 +9,7 @@ function Main() {
 
     return (
 
-        <main className='main'>
+        <div className='landing'>
 
             <Promo />
             <AboutProject />
@@ -17,7 +17,7 @@ function Main() {
             <AboutMe />
             <Portfolio />
             
-        </main>
+        </div>
 
     );
 

@@ -15,37 +15,39 @@ function App() {
     return (
         <>
             <Header />
-            <Switch>
-                <Route exact path='/'>
-                    <Main />
-                </Route>
+            <main className='main'>
+                <Switch>
+                    <Route exact path='/'>
+                        <Main />
+                    </Route>
 
-                <Route path='/movies'>
-                    <Movies />
-                </Route>
-                
-                <Route path='/saved-movies'>
-                    <SavedMovies />
-                </Route>
-                
-                <Route path='/profile'>
-                    <Profile />
-                </Route>
-                
-                <Route path='/signup'>
-                    <Register />
-                </Route>
+                    <Route path='/movies'>
+                        <Movies />
+                    </Route>
+                    
+                    <Route path='/saved-movies'>
+                        <SavedMovies />
+                    </Route>
+                    
+                    <Route path='/profile'>
+                        <Profile />
+                    </Route>
+                    
+                    <Route path='/signup'>
+                        <Register />
+                    </Route>
 
-                <Route path='/signin'>
-                    <Login />
-                </Route>
+                    <Route path='/signin'>
+                        <Login />
+                    </Route>
 
-                <Route
-                    path='*'
-                    component={NotFound}
-                >
-                </Route>
-            </Switch>
+                    <Route
+                        path='*'
+                        component={NotFound}
+                    >
+                    </Route>
+                </Switch>
+            </main>
             <Footer />
         </>
 
