@@ -5,8 +5,8 @@ function FooterItem({ link, text }) {
     return (
         <li>
             <a
-                href={link}
                 className="footer__link"
+                href={link}
                 target="_blank"
                 rel="noreferrer"
             >
@@ -14,6 +14,7 @@ function FooterItem({ link, text }) {
             </a>
         </li>
     );
+    
 };
 
 export default FooterItem;

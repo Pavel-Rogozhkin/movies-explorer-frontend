@@ -4,8 +4,8 @@ const Burger = ({ isClicked, onMenuClick }) => {
 
     return (
         <button
-            type="button"
             className={`burger ${isClicked && 'burger__close'}`}
+            type="button"
             onClick={onMenuClick}
             aria-label="Меню навигации по сайту"
         >

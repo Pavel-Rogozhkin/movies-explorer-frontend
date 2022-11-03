@@ -2,8 +2,6 @@ import './MovieItem.css';
 
 function MovieItem({ movie, isSaveButtonTypeDelete }) {
 
-    console.log(movie.img);
-
     return (
         <li 
             className='movie-item'
@@ -21,7 +19,10 @@ function MovieItem({ movie, isSaveButtonTypeDelete }) {
                 src={movie.img}
                 alt={movie.title}
             />
-            <button className={`movie-item__button movie-item__button_type_${isSaveButtonTypeDelete ? 'delete' : 'save'}`}>
+            <button
+                className={`movie-item__button movie-item__button_type_${isSaveButtonTypeDelete ? 'delete' : 'save'}`}
+                type='button'
+            >
                 Сохранить
             </button>
         </li>

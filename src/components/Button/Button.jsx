@@ -6,6 +6,7 @@ function Button({ place, buttonText }) {
         <button
             className={`button button_place_${place}`}
             aria-label={buttonText}
+            type='submit'
         >
             {buttonText}
         </button>
