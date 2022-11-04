@@ -4,9 +4,8 @@ import AuthNav from '../AuthNav/AuthNav';
 import Burger from '../Burger/Burger';
 import Menu from '../Menu/Menu';
 
-function Navigation({ isPageMain }) {
+function Navigation({ isPageMain, loggedIn }) {
 
-    const loggedIn = false;
     const [isClicked, setIsClicked] = useState(false);
     
     const handleMenuClick = () => {

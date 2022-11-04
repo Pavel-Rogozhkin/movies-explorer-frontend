@@ -9,11 +9,34 @@ import Register from '../Register/Register';
 import Login from '../Login/Login';
 import NotFound from '../NotFound/NotFound';
 import Footer from '../Footer/Footer';
+import { useState, useEffect } from 'react';
+import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
+import MainApi from '../../utils/MainApi';
 
 function App() {
 
+    const [currentUser, setCurrentUser] = useState({});
+    const [loggedIn, setLoggedIn] = useState(localStorage.getItem('loggedIn'));
+
+    useEffect( () => {
+        MainApi.getUserInfo()
+        .then(( userProfile ) => {
+            setLoggedIn(true);
+            localStorage.setItem('loggedIn', true);
+            setCurrentUser(userProfile);
+        })
+        .catch( (err) => {
+            console.log(err);
+            setLoggedIn(false);
+            setCurrentUser({});
+            localStorage.clear();
+        });
+    }, [] );
+
     return (
-        <>
+        <CurrentUserContext.Provider 
+            value={currentUser}
+        >
             <Header />
             <main className='main'>
                 <Switch>
@@ -49,7 +72,7 @@ function App() {
                 </Switch>
             </main>
             <Footer />
-        </>
+        </CurrentUserContext.Provider>
     );
 
 };
