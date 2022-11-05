@@ -14,7 +14,6 @@ function Register({
 
     const {
         values,
-        setValues,
         handleChange,
         errors,
         isValid,
