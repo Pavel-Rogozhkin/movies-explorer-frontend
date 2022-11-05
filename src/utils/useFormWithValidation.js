@@ -1,6 +1,6 @@
-import React, { useCallback } from "./react";
+import React, { useCallback } from "react";
 
-export function useFormWithValidation() {
+function useFormWithValidation() {
 
     const [values, setValues] = React.useState({});
     const [errors, setErrors] = React.useState({});
@@ -36,3 +36,5 @@ export function useFormWithValidation() {
     };
 
 };
+
+export default useFormWithValidation;

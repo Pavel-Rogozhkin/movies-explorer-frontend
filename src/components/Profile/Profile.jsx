@@ -4,7 +4,7 @@ import Input from '../Input/Input';
 import Button from '../Button/Button';
 import { useContext, useEffect } from 'react';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext';
-import { useFormAndValidation } from '../../utils/useFormAndValidation';
+import useFormAndValidation from '../../utils/useFormWithValidation';
 import { NAME_REGEX, EMAIL_REGEX } from '../../utils/consts';
 
 function Profile({

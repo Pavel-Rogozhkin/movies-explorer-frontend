@@ -10,7 +10,7 @@ import Login from '../Login/Login';
 import NotFound from '../NotFound/NotFound';
 import Footer from '../Footer/Footer';
 import { useState, useEffect } from 'react';
-import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
+import { CurrentUserContext } from '../../contexts/CurrentUserContext.js';
 import MainApi from '../../utils/MainApi';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
