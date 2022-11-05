@@ -3,8 +3,31 @@ import Logo from '../Logo/Logo';
 import Form from '../Form/Form';
 import Input from '../Input/Input';
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import useFormWithValidation from '../../utils/useFormWithValidation';
+import { EMAIL_REGEX } from '../../utils/consts';
 
-function Login() {
+function Login({
+    onLogin,
+    loading,
+}) {
+
+    const {
+        values,
+        handleChange,
+        errors,
+        isValid,
+        resetForm,
+    } = useFormWithValidation();
+
+    useEffect(() => {
+        resetForm();
+    }, [resetForm]);
+
+    function handleSubmitLogin(e) {
+        e.preventDefault();
+        onLogin(values)
+    };
 
     return (
         <div className='login'>
@@ -13,27 +36,36 @@ function Login() {
                 Рады видеть!
             </h2>
             <Form
+                onSubmit={handleSubmitLogin}
+                isValid={isValid}
                 name='login'
                 place='login'
-                buttonText='Войти'
+                buttonText={loading ?
+                    'Вход...'
+                    :
+                    'Войти'
+                }
             >
                 <Input 
                     place='login'
                     name='email'
                     label='E-mail'
                     type='email'
-                    value='pochta@yandex.ru'
+                    value={values.email || ''}
                     placeholder='E-mail'
-                    errorMessage=''
+                    errorMessage={errors.email}
+                    onChange={handleChange}
+                    pattern={EMAIL_REGEX}
                 />
                 <Input 
                     place='login'
                     name='password'
                     label='Пароль'
                     type='password'
-                    value=''
+                    value={values.password || ''}
                     placeholder='Пароль'
-                    errorMessage='Что-топошло не так...'
+                    errorMessage={errors.password}
+                    onChange={handleChange}
                 />
             </Form>
             <div className='login__flex'>

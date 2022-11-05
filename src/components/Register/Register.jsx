@@ -41,9 +41,9 @@ function Register({
                 name='register'
                 place='register'
                 buttonText={loading ?
-                    'Зарегистрироваться'
-                    :
                     'Регистрация...'
+                    :
+                    'Зарегистрироваться'
                 }
             >
                 <Input 

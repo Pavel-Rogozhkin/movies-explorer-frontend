@@ -120,6 +120,7 @@ function App() {
     };
 
     function handleAuth({ email, password }) {
+        setLoading(true);
         MainApi.auth({ email, password })
             .then(res => {
                 setCurrentUser({
@@ -194,7 +195,14 @@ function App() {
                     </Route>
 
                     <Route path='/signin'>
-                        <Login />
+                        {loggedIn ?
+                            <Redirect to='/movies' />
+                            :
+                            <Login
+                                onLogin={handleAuth}
+                                loading={loading}
+                            />
+                        }
                     </Route>
 
                     <Route
