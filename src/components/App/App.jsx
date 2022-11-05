@@ -26,30 +26,27 @@ function App() {
 
     // hooks:
     useEffect( () => {
-        MainApi.getUserInfo()
-        .then(( userProfile ) => {
-            setLoggedIn(true);
-            localStorage.setItem('loggedIn', true);
-            setCurrentUser(userProfile);
-        })
-        .catch( (err) => {
-            console.log(err);
-            setLoggedIn(false);
-            setCurrentUser({});
-            localStorage.clear();
-        });
-    }, [] );
-
-    useEffect( () => {
         if (loggedIn) {
+            MainApi.getUserInfo()
+            .then(( userProfile ) => {
+                setLoggedIn(true);
+                localStorage.setItem('loggedIn', true);
+                setCurrentUser(userProfile);
+            })
+            .catch(error => {
+                console.log(error);
+                setLoggedIn(false);
+                setCurrentUser({});
+                localStorage.clear();
+            });
             MainApi.getSavedMovies()
-                .then(data => {
-                    setSavedMovies(data)
-                })
-                .catch(error => {
-                    console.log(error);
-                })
-        };
+            .then(data => {
+                setSavedMovies(data)
+            })
+            .catch(error => {
+                console.log(error);
+            });
+        }
     }, [loggedIn] );
 
     // functions:
@@ -102,11 +99,12 @@ function App() {
             });
     };
 
-    function handleRegister({ email, password}) {
+    function handleRegister({ name, email, password}) {
         setLoading(true);
-        MainApi.register({ email, password })
+        MainApi.register({ name, email, password })
             .then(() => {
                 handleAuth({
+                    name,
                     email,
                     password,
                 });
