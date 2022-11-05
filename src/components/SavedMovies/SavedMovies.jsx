@@ -10,7 +10,7 @@ function SavedMovies({
 
     const [filteredMovies, setFilteredMovies] = useState(savedMovies);
     const [searchTask, setSearchTask] = useState('');
-    const [isChecked, setIsChecked] = useState(false);
+    const [isChecked, setIsChecked] = useState(localStorage.getItem('isChecked') === 'true');
 
     useEffect(() => {
         handleFilteredMovies(savedMovies, isChecked, searchTask);
@@ -18,6 +18,7 @@ function SavedMovies({
 
     function changeCheckbox() {
         setIsChecked(!isChecked);
+        localStorage.setItem('isChecked', !isChecked);
     };
 
     function handleFilteredMovies(movies, isChecked, task) {

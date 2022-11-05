@@ -49,7 +49,7 @@ function App() {
                 .catch(error => {
                     console.log(error);
                 })
-        }
+        };
     }, [loggedIn] );
 
     // functions:
@@ -124,6 +124,8 @@ function App() {
                         savedMovies={savedMovies}
                         onSaveMovie={saveMovie}
                         onDeleteMovie={deleteMovie}
+                        loading={loading}
+                        setLoading={setLoading}
                     />
 
                     <ProtectedRoute
