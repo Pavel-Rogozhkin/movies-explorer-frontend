@@ -102,6 +102,42 @@ function App() {
             });
     };
 
+    function handleRegister({ email, password}) {
+        setLoading(true);
+        MainApi.register({ email, password })
+            .then(() => {
+                handleAuth({
+                    email,
+                    password,
+                });
+            })
+            .catch(error => {
+                console.log(error);
+            })
+            .finally(() => {
+                setLoading(false);
+            });
+    };
+
+    function handleAuth({ email, password }) {
+        MainApi.auth({ email, password })
+            .then(res => {
+                setCurrentUser({
+                    name: res.name,
+                    email: res.email,
+                });
+                setLoggedIn(true);
+                localStorage.setItem('loggedIn', true);
+                history.push('/movies');
+            })
+            .catch(error => {
+                console.log(error);
+            })
+            .finally(() => {
+                setLoading(false);
+            });
+    };
+
     // render:
     return (
         <CurrentUserContext.Provider 
@@ -147,7 +183,14 @@ function App() {
                     />
 
                     <Route path='/signup'>
-                        <Register />
+                        {loggedIn ?
+                            <Redirect to='/movies' />
+                            :
+                            <Register
+                                onRegister={handleRegister}
+                                loading={loading}
+                            />
+                        }
                     </Route>
 
                     <Route path='/signin'>

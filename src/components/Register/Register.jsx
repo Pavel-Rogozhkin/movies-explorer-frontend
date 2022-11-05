@@ -3,8 +3,32 @@ import Logo from '../Logo/Logo';
 import Form from '../Form/Form';
 import Input from '../Input/Input';
 import { Link } from 'react-router-dom';
+import { useEffect } from 'react';
+import useFormWithValidation from '../../utils/useFormWithValidation';
+import { NAME_REGEX, EMAIL_REGEX } from '../../utils/consts';
 
-function Register() {
+function Register({
+    onRegister,
+    loading,
+}) {
+
+    const {
+        values,
+        setValues,
+        handleChange,
+        errors,
+        isValid,
+        resetForm,
+    } = useFormWithValidation();
+
+    useEffect(() => {
+        resetForm();
+    }, [resetForm]);
+
+    function handleSubmitRegister(e) {
+        e.preventDefault();
+        onRegister(values)
+    };
 
     return (
         <div className='register'>
@@ -13,36 +37,47 @@ function Register() {
                 Добро пожаловать!
             </h2>
             <Form
+                onSubmit={handleSubmitRegister}
+                isValid={isValid}
                 name='register'
                 place='register'
-                buttonText='Зарегистрироваться'
+                buttonText={loading ?
+                    'Зарегистрироваться'
+                    :
+                    'Регистрация...'
+                }
             >
                 <Input 
                     place='register'
                     name='name'
                     label='Имя'
                     type='text'
-                    value='Павел'
+                    value={values.name || ''}
                     placeholder='Имя'
-                    errorMessage=''
+                    errorMessage={errors.name}
+                    onChange={handleChange}
+                    pattern={NAME_REGEX}
                 />
                 <Input 
                     place='register'
                     name='email'
                     label='E-mail'
                     type='email'
-                    value='pochta@yandex.ru'
+                    value={values.email || ''}
                     placeholder='E-mail'
-                    errorMessage=''
+                    errorMessage={errors.email}
+                    onChange={handleChange}
+                    pattern={EMAIL_REGEX}
                 />
                 <Input 
                     place='register'
                     name='password'
                     label='Пароль'
                     type='password'
-                    value='4324234234'
+                    value={values.password || ''}
                     placeholder='Пароль'
-                    errorMessage='Что-топошло не так...'
+                    errorMessage={errors.password}
+                    onChange={handleChange}
                 />
             </Form>
             <div className='register__flex'>

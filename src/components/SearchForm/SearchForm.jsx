@@ -2,7 +2,7 @@ import './SearchForm.css';
 import Form from '../Form/Form';
 import Input from '../Input/Input';
 import Checkbox from '../Checkbox/Checkbox';
-import useFormAndValidation from '../../utils/useFormWithValidation';
+import useFormWithValidation from '../../utils/useFormWithValidation';
 import { useEffect } from 'react';
 
 function SearchForm({
@@ -16,7 +16,7 @@ function SearchForm({
         setValues,
         handleChange,
         errors,
-    } = useFormAndValidation();
+    } = useFormWithValidation();
 
     useEffect(() => {
         const task = localStorage.getItem('searchTask');
@@ -27,7 +27,7 @@ function SearchForm({
 
     function handleSubmitSearch(e) {
         e.preventDefault();
-        onSubmitSearch(values)
+        onSubmitSearch(values.task)
     };
 
     return (
