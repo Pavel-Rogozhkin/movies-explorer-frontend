@@ -1,5 +1,5 @@
 import './App.css';
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, useHistory, Redirect  } from 'react-router-dom';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Movies from '../Movies/Movies';
@@ -15,9 +15,15 @@ import MainApi from '../../utils/MainApi';
 
 function App() {
 
+    // consts, states and etc:
     const [currentUser, setCurrentUser] = useState({});
     const [loggedIn, setLoggedIn] = useState(localStorage.getItem('loggedIn'));
+    const [loading,  setLoading] = useState(false);
+    const [savedMovies, setSavedMovies] = useState([]);
 
+    const history = useHistory();
+
+    // hooks:
     useEffect( () => {
         MainApi.getUserInfo()
         .then(( userProfile ) => {
@@ -33,13 +39,54 @@ function App() {
         });
     }, [] );
 
-    
+    useEffect( () => {
+        if (loggedIn) {
+            MainApi.getSavedMovies()
+                .then(data => {
+                    setSavedMovies(data)
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+        }
+    }, [loggedIn] );
 
+    // functions:
+    function handleSetUserInfo(data) {
+        setLoading(true);
+        MainApi.setUserInfo(data)
+            .then(user => {
+                setCurrentUser(user);
+            })
+            .catch(error => {
+                console.log(error);
+            })
+            .finally(() => {
+                setLoading(false);
+            });
+    };
+
+    function handleSingOut() {
+        MainApi.signOut()
+            .then(() => {
+                setLoggedIn(false);
+                setCurrentUser({});
+                localStorage.clear();
+                history.push('/');
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    };
+
+    // render:
     return (
         <CurrentUserContext.Provider 
             value={currentUser}
         >
-            <Header />
+            <Header 
+                loggedIn={loggedIn}
+            />
             <main className='main'>
                 <Switch>
                     <Route exact path='/'>
@@ -70,6 +117,9 @@ function App() {
                         path='*'
                         component={NotFound}
                     >
+                    </Route>
+                    <Route>
+                        {loggedIn ? <Redirect to="/" /> : <Redirect to="/signin" />}
                     </Route>
                 </Switch>
             </main>
