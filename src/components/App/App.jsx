@@ -80,6 +80,28 @@ function App() {
             });
     };
 
+    function saveMovie({ array, id }) {
+        const movie = array.find(movie => movie.movieId === id);
+        MainApi.setSavedMovies(movie)
+            .then(i => {
+                setSavedMovies([ i, ...savedMovies ]);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    };
+
+    function deleteMovie(movie) {
+        MainApi.deleteMovie(movie._id)
+            .then(() => {
+                const moviesList = savedMovies.filter((m) => m._id !== movie._id);
+                setSavedMovies(moviesList);
+            })
+            .catch(error => {
+                console.log(error);
+            });
+    };
+
     // render:
     return (
         <CurrentUserContext.Provider 
