@@ -2,12 +2,18 @@ import './Movies.css';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesList from '../MoviesList/MoviesList';
 
-function Movies() {
+function Movies({
+    savedMovies,
+    onSaveMovie,
+    onDeleteMovie,
+}) {
 
     return (
         <>
             <SearchForm />
-            <MoviesList />
+            <MoviesList
+                onSaveMovie={onSaveMovie}
+            />
         </>
     );
 

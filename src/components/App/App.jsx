@@ -117,14 +117,23 @@ function App() {
                         <Main />
                     </Route>
 
-                    <Route path='/movies'>
-                        <Movies />
-                    </Route>
-                    
-                    <Route path='/saved-movies'>
-                        <SavedMovies />
-                    </Route>
-                    
+                    <ProtectedRoute
+                        exact
+                        path='/movies'
+                        component={Movies}
+                        savedMovies={savedMovies}
+                        onSaveMovie={saveMovie}
+                        onDeleteMovie={deleteMovie}
+                    />
+
+                    <ProtectedRoute
+                        exact
+                        path='/saved-movies'
+                        component={SavedMovies}
+                        savedMovies={savedMovies}
+                        onDeleteMovie={deleteMovie}
+                    />
+
                     <ProtectedRoute
                         exact
                         path='/profile'
@@ -134,7 +143,7 @@ function App() {
                         onSetUserInfo={handleSetUserInfo}
                         onSignOut={handleSingOut}
                     />
-                    
+
                     <Route path='/signup'>
                         <Register />
                     </Route>
@@ -146,8 +155,7 @@ function App() {
                     <Route
                         path='*'
                         component={NotFound}
-                    >
-                    </Route>
+                    />
 
                     <Route>
                         {loggedIn ? <Redirect to="/" /> : <Redirect to="/signin" />}
