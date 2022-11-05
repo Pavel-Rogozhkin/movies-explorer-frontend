@@ -56,6 +56,8 @@ function Register({
                     errorMessage={errors.name}
                     onChange={handleChange}
                     pattern={NAME_REGEX}
+                    minLength={2}
+                    maxLength={30}
                 />
                 <Input 
                     place='register'
