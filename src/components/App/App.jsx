@@ -12,6 +12,7 @@ import Footer from '../Footer/Footer';
 import { useState, useEffect } from 'react';
 import { CurrentUserContext } from '../contexts/CurrentUserContext.js';
 import MainApi from '../../utils/MainApi';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 function App() {
 
@@ -89,6 +90,7 @@ function App() {
             />
             <main className='main'>
                 <Switch>
+
                     <Route exact path='/'>
                         <Main />
                     </Route>
@@ -101,9 +103,15 @@ function App() {
                         <SavedMovies />
                     </Route>
                     
-                    <Route path='/profile'>
-                        <Profile />
-                    </Route>
+                    <ProtectedRoute
+                        exact
+                        path='/profile'
+                        component={Profile}
+                        loggedIn={loggedIn}
+                        loading={loading}
+                        onSetUserInfo={handleSetUserInfo}
+                        onSignOut={handleSingOut}
+                    />
                     
                     <Route path='/signup'>
                         <Register />
@@ -118,9 +126,11 @@ function App() {
                         component={NotFound}
                     >
                     </Route>
+
                     <Route>
                         {loggedIn ? <Redirect to="/" /> : <Redirect to="/signin" />}
                     </Route>
+
                 </Switch>
             </main>
             <Footer />

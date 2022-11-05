@@ -7,6 +7,10 @@ function Input({
     type,
     value,
     placeholder,
+    onChange,
+    minLength,
+    maxLength,
+    pattern,
     errorMessage,
 }) {
 
@@ -24,6 +28,8 @@ function Input({
                 name={name}
                 value={value}
                 placeholder={placeholder}
+                onChange={onChange}
+                pattern={pattern || '.*'}
                 required
             />
             <span className={`input__error ${place ? `input__error_place_${place}` : ''}`}>
