@@ -31,20 +31,20 @@ function Movies({
         );
     };
 
-    useEffect(() => {
-        setLoading(true);
-        MoviesApi.getMovies()
-            .then(data => {
-                handleFilteredMovies(data, isChecked, searchTask);
-                localStorage.setItem('movies', JSON.stringify(data));
-            })
-            .catch(error => {
-                console.log(error);
-            })
-            .finally(() => {
-                setLoading(false);
-            });
-    }, [] );
+    // useEffect(() => {
+    //     setLoading(true);
+    //     MoviesApi.getMovies()
+    //         .then(data => {
+    //             handleFilteredMovies(data, isChecked, searchTask);
+    //             localStorage.setItem('movies', JSON.stringify(data));
+    //         })
+    //         .catch(error => {
+    //             console.log(error);
+    //         })
+    //         .finally(() => {
+    //             setLoading(false);
+    //         });
+    // }, [] );
 
 
     function handleSubmitSearch(searchTask) {
