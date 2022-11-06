@@ -28,19 +28,19 @@ function MoviesList({
     // Hook useWindowSize
     function useWindowSize() {
         const [windowSize, setWindowSize] = useState({
-        width: undefined,
-        height: undefined,
+            width: undefined,
+            height: undefined,
         });
         useEffect(() => {
-        function handleResize() {
-            setWindowSize({
-            width: window.innerWidth,
-            height: window.innerHeight,
-            });
-        }
-        window.addEventListener("resize", handleResize);
-        handleResize();
-        return () => window.removeEventListener("resize", handleResize);
+            function handleResize() {
+                setWindowSize({
+                    width: window.innerWidth,
+                    height: window.innerHeight,
+                });
+            }
+            window.addEventListener("resize", handleResize);
+            handleResize();
+            return () => window.removeEventListener("resize", handleResize);
         }, [] );
         return windowSize;
     };
@@ -70,19 +70,17 @@ function MoviesList({
         if (filteredMovies.length && isSaveButtonTypeDelete) {
             const list = filteredMovies.filter((m, i) => i < params.curNum );
             setMoviesList(list);
-        } else if (!filteredMovies) {
-            setMoviesList(moviesArray);
         } else {
             setMoviesList(filteredMovies);
         };
     }, [filteredMovies, isSaveButtonTypeDelete, params.curNum] )
 
+    
     return (
         <section className='movies-list__container'>
             <ul className='movies-list'>
                 {moviesList.map(movie => (
                     <MovieItem
-                        key={movie._id || movie.movieId}
                         movie={movie}
                         isSaveButtonTypeDelete={isSaveButtonTypeDelete}
                         savedMovies={savedMovies}

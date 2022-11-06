@@ -2,6 +2,7 @@ import './MovieItem.css';
 import { MOVIES_API_URL } from '../../utils/consts';
 
 function MovieItem({
+    key,
     movie,
     isSaveButtonTypeDelete,
     savedMovies,
@@ -9,8 +10,8 @@ function MovieItem({
     onDeleteMovie,
 }) {
 
-    const savedMovie = savedMovies.find(m => m.movieId === movie._id);
-    const isSaved = movie._id && savedMovie;
+    const savedMovie = savedMovies.find(m => m.id === movie.id);
+    const isSaved = movie.id && savedMovie;
 
     function handleDeleteMovie(e) {
         e.preventDefault();
@@ -22,9 +23,12 @@ function MovieItem({
         onSaveMovie(movie);
     };
 
+    console.log(movie.id);
+
     return (
         <li 
             className='movie-item'
+            key={movie.id}
         >
             <a
                 href={movie.trailerLink}

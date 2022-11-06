@@ -29,7 +29,6 @@ function App() {
         if (loggedIn) {
             MainApi.getUserInfo()
             .then(( userProfile ) => {
-                console.log(userProfile);
                 setLoggedIn(true);
                 localStorage.setItem('loggedIn', true);
                 setCurrentUser(userProfile);
@@ -40,13 +39,13 @@ function App() {
                 setCurrentUser({});
                 localStorage.clear();
             });
-            MainApi.getSavedMovies()
-            .then(data => {
-                setSavedMovies(data)
-            })
-            .catch(error => {
-                console.log(error);
-            });
+            // MainApi.getSavedMovies()
+            // .then(data => {
+            //     setSavedMovies(data)
+            // })
+            // .catch(error => {
+            //     console.log(error);
+            // });
         }
     }, [loggedIn] );
 

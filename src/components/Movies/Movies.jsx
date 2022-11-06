@@ -31,7 +31,24 @@ function Movies({
         );
     };
 
+    useEffect(() => {
+        setLoading(true);
+        MoviesApi.getMovies()
+            .then(data => {
+                handleFilteredMovies(data, isChecked, searchTask);
+                localStorage.setItem('movies', JSON.stringify(data));
+            })
+            .catch(error => {
+                console.log(error);
+            })
+            .finally(() => {
+                setLoading(false);
+            });
+    }, [] );
+
+
     function handleSubmitSearch(searchTask) {
+
         if (searchTask) {
             setSearchTask(searchTask);
             localStorage.setItem('searchTask', searchTask);
@@ -50,6 +67,7 @@ function Movies({
                         setLoading(false);
                     })
             } else {
+                console.log(localStorage.getItem('movies'));
                 handleFilteredMovies(JSON.parse(localStorage.getItem('movies')), isChecked, searchTask);
                 setLoading(false);
             };
