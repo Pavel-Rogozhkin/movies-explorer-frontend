@@ -26,8 +26,10 @@ function App() {
 
     // hooks:
     useEffect( () => {
+        if (loggedIn) {
             MainApi.getUserInfo()
             .then(( userProfile ) => {
+                console.log(userProfile);
                 setLoggedIn(true);
                 localStorage.setItem('loggedIn', true);
                 setCurrentUser(userProfile);
@@ -45,7 +47,8 @@ function App() {
             .catch(error => {
                 console.log(error);
             });
-    }, [] );
+        }
+    }, [loggedIn] );
 
     // functions:
     function handleSetUserInfo(data) {

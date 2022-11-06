@@ -14,7 +14,7 @@ function Navigation({ isPageMain, loggedIn }) {
 
     return (
         <nav className={`navigation ${(isPageMain && !loggedIn) ? 'navigation__main-page' : ''}`}>
-            {(loggedIn && isPageMain) ?
+            {(!loggedIn && isPageMain) ?
                 <AuthNav />
             :
                 <>

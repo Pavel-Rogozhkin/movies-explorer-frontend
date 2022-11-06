@@ -31,6 +31,7 @@
     border-radius: 3px;
     background-color: #202020;
     color: #FFF;
+    cursor: pointer;
 }
 
 .movies-list__more_unvisible {
