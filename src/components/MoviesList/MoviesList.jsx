@@ -9,6 +9,7 @@ function MoviesList({
     savedMovies,
     onSaveMovie,
     onDeleteMovie,
+    filteredMovies,
 }) {
 
     const [moviesList, setMoviesList] = useState(moviesArray);
@@ -17,6 +18,15 @@ function MoviesList({
     function handleMore() {
 
     };
+
+    useEffect(() => {
+        if (filteredMovies.length && isSaveButtonTypeDelete) {
+            const list = filteredMovies.filter((m, i) => i < params.curNum );
+            setMoviesList(list);
+        } else {
+            setMoviesList(filteredMovies);
+        };
+    }, [filteredMovies, isSaveButtonTypeDelete, params.curNum] )
 
     return (
         <section className='movies-list__container'>

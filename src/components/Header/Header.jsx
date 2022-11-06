@@ -19,6 +19,7 @@ function Header({ loggedIn }) {
                         <Logo />
                         <Navigation 
                             loggedIn={loggedIn}
+                            isPageMain={false}
                         />
                     </header>
                 </>

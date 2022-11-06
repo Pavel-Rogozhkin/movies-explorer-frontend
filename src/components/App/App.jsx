@@ -26,7 +26,6 @@ function App() {
 
     // hooks:
     useEffect( () => {
-        if (loggedIn) {
             MainApi.getUserInfo()
             .then(( userProfile ) => {
                 setLoggedIn(true);
@@ -46,8 +45,7 @@ function App() {
             .catch(error => {
                 console.log(error);
             });
-        }
-    }, [loggedIn] );
+    }, [] );
 
     // functions:
     function handleSetUserInfo(data) {
@@ -156,6 +154,7 @@ function App() {
                         exact
                         path='/movies'
                         component={Movies}
+                        loggedIn={loggedIn}
                         savedMovies={savedMovies}
                         onSaveMovie={saveMovie}
                         onDeleteMovie={deleteMovie}
@@ -167,6 +166,7 @@ function App() {
                         exact
                         path='/saved-movies'
                         component={SavedMovies}
+                        loggedIn={loggedIn}
                         savedMovies={savedMovies}
                         onDeleteMovie={deleteMovie}
                     />

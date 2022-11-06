@@ -22,6 +22,10 @@ function MovieItem({
         onSaveMovie(movie);
     };
 
+    console.log(movie.image);
+    console.log(MOVIES_API_URL);
+    console.log(movie.img);
+
     return (
         <li 
             className='movie-item'
@@ -42,7 +46,7 @@ function MovieItem({
                 <img
                     className='movie-item__img'
                     src={movie.image.url ?
-                        `${MOVIES_API_URL}${movie.image.url}`
+                        `${MOVIES_API_URL}/${movie.image.url}`
                         : 
                         movie.img
                     }

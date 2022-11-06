@@ -14,9 +14,9 @@ function Navigation({ isPageMain, loggedIn }) {
 
     return (
         <nav className={`navigation ${(isPageMain && !loggedIn) ? 'navigation__main-page' : ''}`}>
-            {(loggedIn || isPageMain) ? (
+            {(loggedIn && isPageMain) ?
                 <AuthNav />
-            ) : (
+            :
                 <>
                     <Menu
                         isClicked={isClicked}
@@ -26,7 +26,7 @@ function Navigation({ isPageMain, loggedIn }) {
                         onMenuClick={handleMenuClick}
                     />
                 </>
-            )}
+            }
         </nav>
     );
 
