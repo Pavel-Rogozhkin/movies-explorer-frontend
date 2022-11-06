@@ -22,10 +22,6 @@ function MovieItem({
         onSaveMovie(movie);
     };
 
-    console.log(movie.image);
-    console.log(MOVIES_API_URL);
-    console.log(movie.img);
-
     return (
         <li 
             className='movie-item'
@@ -37,7 +33,7 @@ function MovieItem({
             >
                 <div className='movie-item__info'>
                     <h3 className='movie-item__title'>
-                        {movie.nameRU ? movie.nameRU : movie.title}
+                        {movie.title || movie.nameRU}
                     </h3>
                     <p className='movie-item__duration'>
                         {`${movie.duration} минут`}
@@ -45,12 +41,8 @@ function MovieItem({
                 </div>
                 <img
                     className='movie-item__img'
-                    src={movie.image.url ?
-                        `${MOVIES_API_URL}/${movie.image.url}`
-                        : 
-                        movie.img
-                    }
-                    alt={movie.nameRU ? movie.nameRU : movie.title}
+                    src={movie.img || `${MOVIES_API_URL}${movie.image.url}`}
+                    alt={movie.title || movie.nameRU}
                 />
                 <button
                     className={`
