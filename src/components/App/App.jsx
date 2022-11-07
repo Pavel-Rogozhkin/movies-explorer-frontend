@@ -12,6 +12,7 @@ import Footer from '../Footer/Footer';
 import { useState, useEffect } from 'react';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext.js';
 import MainApi from '../../utils/MainApi';
+import MoviesApi from '../../utils/MoviesApi';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 function App() {
@@ -27,6 +28,7 @@ function App() {
     // hooks:
     useEffect( () => {
         if (loggedIn) {
+
             MainApi.getUserInfo()
             .then(( userProfile ) => {
                 setLoggedIn(true);
@@ -39,13 +41,26 @@ function App() {
                 setCurrentUser({});
                 localStorage.clear();
             });
-            // MainApi.getSavedMovies()
-            // .then(data => {
-            //     setSavedMovies(data)
-            // })
-            // .catch(error => {
-            //     console.log(error);
-            // });
+
+            setLoading(true);
+            MoviesApi.getMovies()
+                .then(data => {
+                    localStorage.setItem('movies', JSON.stringify(data));
+                })
+                .catch(error => {
+                    console.log(error);
+                })
+                .finally(() => {
+                    setLoading(false);
+                });
+
+            MainApi.getSavedMovies()
+            .then(data => {
+                setSavedMovies(data)
+            })
+            .catch(error => {
+                console.log(error);
+            });
         }
     }, [loggedIn] );
 

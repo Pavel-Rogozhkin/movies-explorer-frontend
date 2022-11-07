@@ -13,7 +13,7 @@ function Movies({
     setLoading
 }) {
 
-    const [filteredMovies, setFilteredMovies] = useState(savedMovies);
+    const [filteredMovies, setFilteredMovies] = useState([]);
     const [searchTask, setSearchTask] = useState('');
     const [isChecked, setIsChecked] = useState(localStorage.getItem('isChecked') === 'true');
 
@@ -31,24 +31,7 @@ function Movies({
         );
     };
 
-    // useEffect(() => {
-    //     setLoading(true);
-    //     MoviesApi.getMovies()
-    //         .then(data => {
-    //             handleFilteredMovies(data, isChecked, searchTask);
-    //             localStorage.setItem('movies', JSON.stringify(data));
-    //         })
-    //         .catch(error => {
-    //             console.log(error);
-    //         })
-    //         .finally(() => {
-    //             setLoading(false);
-    //         });
-    // }, [] );
-
-
     function handleSubmitSearch(searchTask) {
-
         if (searchTask) {
             setSearchTask(searchTask);
             localStorage.setItem('searchTask', searchTask);
@@ -77,6 +60,7 @@ function Movies({
     useEffect(() => {
         const task = localStorage.getItem('searchTask');
         const movies = JSON.parse(localStorage.getItem('movies'));
+        console.log(task);
         if (task && movies) {
             handleFilteredMovies(movies, isChecked, task);
         };

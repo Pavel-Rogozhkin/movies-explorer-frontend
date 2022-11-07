@@ -20,6 +20,7 @@ function SearchForm({
 
     useEffect(() => {
         const task = localStorage.getItem('searchTask');
+        console.log(task);
         if (task) {
             setValues({task});
         };

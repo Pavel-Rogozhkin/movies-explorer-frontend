@@ -1,5 +1,5 @@
 import './MoviesList.css';
-import moviesArray from '../../utils/moviesArray'; // default movies
+// import moviesArray from '../../utils/moviesArray'; // default movies
 import MovieItem from '../MovieItem/MovieItem';
 import { useState, useEffect } from 'react';
 
@@ -12,7 +12,9 @@ function MoviesList({
     onDeleteMovie,
 }) {
 
-    const [moviesList, setMoviesList] = useState(moviesArray);
+    console.log(filteredMovies);
+
+    const [moviesList, setMoviesList] = useState([]);
     const [params, setParams] = useState({ curNum: 0, moreNum: 0 });
 
     function handleMore() {

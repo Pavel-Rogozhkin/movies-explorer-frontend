@@ -23,8 +23,6 @@ function MovieItem({
         onSaveMovie(movie);
     };
 
-    console.log(movie.id);
-
     return (
         <li 
             className='movie-item'
