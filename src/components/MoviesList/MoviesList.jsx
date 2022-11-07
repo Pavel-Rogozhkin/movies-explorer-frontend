@@ -12,7 +12,7 @@ function MoviesList({
     onDeleteMovie,
 }) {
 
-    console.log(filteredMovies);
+    // console.log(filteredMovies);
 
     const [moviesList, setMoviesList] = useState([]);
     const [params, setParams] = useState({ curNum: 0, moreNum: 0 });

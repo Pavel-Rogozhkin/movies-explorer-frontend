@@ -2,7 +2,6 @@ import './MovieItem.css';
 import { MOVIES_API_URL } from '../../utils/consts';
 
 function MovieItem({
-    key,
     movie,
     isSaveButtonTypeDelete,
     savedMovies,
@@ -20,7 +19,7 @@ function MovieItem({
 
     function handleSaveMovie(e) {
         e.preventDefault();
-        onSaveMovie(movie);
+        onSaveMovie(savedMovies, movie.id);
     };
 
     return (

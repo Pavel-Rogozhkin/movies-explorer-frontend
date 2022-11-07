@@ -80,6 +80,7 @@ function App() {
     };
 
     function handleSingOut() {
+        console.log('fdfdsfs');
         MainApi.signOut()
             .then(() => {
                 setLoggedIn(false);
@@ -93,7 +94,8 @@ function App() {
     };
 
     function saveMovie({ array, id }) {
-        const movie = array.find(movie => movie.movieId === id);
+        console.log(array);
+        const movie = array.find(m => m.movieId === id);
         MainApi.setSavedMovies(movie)
             .then(i => {
                 setSavedMovies([ i, ...savedMovies ]);

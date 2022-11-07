@@ -1,6 +1,12 @@
 import './Button.css';
 
-function Button({ place, buttonText, isValid, type }) {
+function Button({
+    place,
+    buttonText,
+    isValid,
+    type,
+    onClick,
+}) {
 
     return (
         <button
@@ -8,6 +14,7 @@ function Button({ place, buttonText, isValid, type }) {
             aria-label={buttonText}
             type={type || 'submit'}
             disabled={!isValid}
+            onClick={onClick}
         >
             {buttonText}
         </button>
