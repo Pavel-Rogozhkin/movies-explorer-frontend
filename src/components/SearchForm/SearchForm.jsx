@@ -16,6 +16,7 @@ function SearchForm({
         setValues,
         handleChange,
         errors,
+        isValid,
     } = useFormWithValidation();
 
     useEffect(() => {
@@ -28,7 +29,8 @@ function SearchForm({
 
     function handleSubmitSearch(e) {
         e.preventDefault();
-        onSubmitSearch(values.task)
+        console.log(values);
+        onSubmitSearch(values.search);
     };
 
     return (
@@ -38,6 +40,7 @@ function SearchForm({
                     place='search'
                     buttonText='Поиск'
                     onSubmit={handleSubmitSearch}
+                    isValid={isValid}
                 >
                     <Input
                         type="text"

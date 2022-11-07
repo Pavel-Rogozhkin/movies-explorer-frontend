@@ -15,7 +15,7 @@ function Movies({
 
     const [filteredMovies, setFilteredMovies] = useState([]);
     const [searchTask, setSearchTask] = useState('');
-    const [isChecked, setIsChecked] = useState(localStorage.getItem('isChecked') === 'true');
+    const [isChecked, setIsChecked] = useState(false);
 
     function changeCheckbox() {
         setIsChecked(!isChecked);
@@ -32,6 +32,7 @@ function Movies({
     };
 
     function handleSubmitSearch(searchTask) {
+        console.log(searchTask);
         if (searchTask) {
             setSearchTask(searchTask);
             localStorage.setItem('searchTask', searchTask);

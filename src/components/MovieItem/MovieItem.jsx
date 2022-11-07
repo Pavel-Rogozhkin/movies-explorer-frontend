@@ -30,7 +30,7 @@ function MovieItem({
         >
             <a
                 href={movie.trailerLink}
-                className="movie-item__link"
+                className="movie-item movie-item__link"
                 target="blank"
             >
                 <div className='movie-item__info'>
