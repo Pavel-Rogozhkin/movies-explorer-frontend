@@ -80,7 +80,7 @@ function App() {
     };
 
     function handleSingOut() {
-        console.log('fdfdsfs');
+        console.log('fdfdsfsjhghgh');
         MainApi.signOut()
             .then(() => {
                 setLoggedIn(false);

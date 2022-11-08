@@ -20,7 +20,12 @@ function Profile({
         handleChange,
         errors,
         isValid,
+        setIsValid,
     } = useFormWithValidation();
+
+    useEffect(() => {
+        setIsValid(true);
+    }, [setIsValid] );
 
     useEffect(() => {
         setValues({
@@ -28,10 +33,6 @@ function Profile({
             email: currentUser.email,
         });
     }, [setValues, currentUser]);    
-
-    const validProfile = isValid
-        && (values.name !== currentUser.name
-        || values.email !== currentUser.email);
 
     function handleInputChange(e) {
         handleChange(e);
@@ -58,8 +59,7 @@ function Profile({
                     'Редактировать'
                 }
                 onSubmit={handleSubmitProfile}
-                isValid={validProfile}
-                
+                isValid={isValid}
             >
                 <Input 
                     place='profile'
@@ -81,7 +81,7 @@ function Profile({
                     placeholder='E-mail'
                     onChange={handleInputChange}
                     pattern={EMAIL_REGEX}
-                    errorMessage={errors.name}
+                    errorMessage={errors.email}
                 />
             </Form>
             <Button
@@ -89,6 +89,7 @@ function Profile({
                 place='logout'
                 buttonText='Выйти из аккаунта'
                 onClick={onSignOut}
+                isValid={isValid}
             />
         </div>
     );
