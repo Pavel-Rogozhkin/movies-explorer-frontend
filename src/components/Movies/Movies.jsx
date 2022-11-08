@@ -17,7 +17,6 @@ function Movies({
     const [searchTask, setSearchTask] = useState('');
     const [isChecked, setIsChecked] = useState(false);
 
-    console.log(searchTask);
     localStorage.setItem('searchTask', '');
 
     function changeCheckbox() {
@@ -35,7 +34,6 @@ function Movies({
     };
 
     function handleSubmitSearch(searchTask) {
-        console.log(searchTask);
         if (searchTask) {
             setSearchTask(searchTask);
             localStorage.setItem('searchTask', searchTask);
@@ -61,22 +59,10 @@ function Movies({
     };
 
     useEffect(() => {
-        console.log(localStorage.getItem('searchTask'));
         const task = localStorage.getItem('searchTask');
         const movies = JSON.parse(localStorage.getItem('movies'));
-        console.log(task);
-        handleFilteredMovies(movies, false, '');
+        handleFilteredMovies(movies, isChecked, task);
     }, [isChecked, searchTask] );
-
-    // useEffect(() => {
-    //     console.log(localStorage.getItem('searchTask'));
-    //     const task = localStorage.getItem('searchTask');
-    //     const movies = JSON.parse(localStorage.getItem('movies'));
-    //     console.log(task);
-    //     if (task && movies) {
-    //         handleFilteredMovies(movies, isChecked, task);
-    //     };
-    // }, [isChecked, searchTask] );
 
     return (
         <>

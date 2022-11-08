@@ -92,9 +92,7 @@ function App() {
             });
     };
 
-    function saveMovie({ array, id }) {
-        console.log(array);
-        const movie = array.find(m => m.movieId === id);
+    function saveMovie(movie) {
         MainApi.setSavedMovies(movie)
             .then(i => {
                 setSavedMovies([ i, ...savedMovies ]);

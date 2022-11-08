@@ -1,5 +1,6 @@
 import './MovieItem.css';
 import { MOVIES_API_URL } from '../../utils/consts';
+import { useState } from 'react';
 
 function MovieItem({
     movie,
@@ -10,16 +11,18 @@ function MovieItem({
 }) {
 
     const savedMovie = savedMovies.find(m => m.id === movie.id);
-    const isSaved = movie.id && savedMovie;
+    const [isSaved, setIsSaved] = useState(movie.id && savedMovie);
 
     function handleDeleteMovie(e) {
         e.preventDefault();
+        setIsSaved(false);
         onDeleteMovie(savedMovie);
     };
 
     function handleSaveMovie(e) {
         e.preventDefault();
-        onSaveMovie(savedMovies, movie.id);
+        setIsSaved(true);
+        onSaveMovie(savedMovie);
     };
 
     return (
@@ -48,8 +51,8 @@ function MovieItem({
                 <button
                     className={`
                         movie-item__button
-                        movie-item__button_type_${isSaveButtonTypeDelete ? 'delete' : 'save'}
                         ${isSaved ? 'movie-item__button_active' : ''}
+                        movie-item__button_type_${isSaveButtonTypeDelete ? 'delete' : 'save'}
                     `}
                     type='button'
                     onClick={isSaved || isSaveButtonTypeDelete ? handleDeleteMovie : handleSaveMovie}
