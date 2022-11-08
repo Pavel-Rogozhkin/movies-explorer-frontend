@@ -12,12 +12,11 @@ function MoviesList({
     onDeleteMovie,
 }) {
 
-    // console.log(filteredMovies);
-
-    const [moviesList, setMoviesList] = useState([]);
+    const [moviesList, setMoviesList] = useState(filteredMovies);
     const [params, setParams] = useState({ curNum: 0, moreNum: 0 });
 
     function handleMore() {
+        console.log('fdfdfdsfadsfdsaf');
         if ((filteredMovies.length - moviesList.length) > 0) {
             const addMovies = filteredMovies.slice(
                 moviesList.length,
@@ -69,13 +68,9 @@ function MoviesList({
     }, [windowWidth] );
 
     useEffect(() => {
-        if (filteredMovies.length && isSaveButtonTypeDelete) {
-            const list = filteredMovies.filter((m, i) => i < params.curNum );
-            setMoviesList(list);
-        } else {
-            setMoviesList(filteredMovies);
-        };
-    }, [filteredMovies, isSaveButtonTypeDelete, params.curNum] )
+        const list = filteredMovies.filter((m, i) => i < params.curNum );
+        setMoviesList(list);
+     }, [filteredMovies, isSaveButtonTypeDelete, params.curNum] )
 
     
     return (
