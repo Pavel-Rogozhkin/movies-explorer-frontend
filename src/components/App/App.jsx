@@ -14,6 +14,7 @@ import { CurrentUserContext } from '../../contexts/CurrentUserContext.js';
 import MainApi from '../../utils/MainApi';
 import MoviesApi from '../../utils/MoviesApi';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
+import useWindowSize from '../../utils/useWindowSize';
 
 function App() {
 
@@ -22,6 +23,9 @@ function App() {
     const [loggedIn, setLoggedIn] = useState(localStorage.getItem('loggedIn'));
     const [loading,  setLoading] = useState(false);
     const [savedMovies, setSavedMovies] = useState([]);
+    const [movies, setMovies] = useState([]);
+    
+    const windowWidth = useWindowSize().width;
 
     const history = useHistory();
 
@@ -46,6 +50,7 @@ function App() {
             MoviesApi.getMovies()
                 .then(data => {
                     localStorage.setItem('movies', JSON.stringify(data));
+                    setMovies(data);
                 })
                 .catch(error => {
                     console.log(error);
@@ -171,11 +176,13 @@ function App() {
                         path='/movies'
                         component={Movies}
                         loggedIn={loggedIn}
+                        movies={movies}
                         savedMovies={savedMovies}
                         onSaveMovie={saveMovie}
                         onDeleteMovie={deleteMovie}
                         loading={loading}
                         setLoading={setLoading}
+                        windowWidth={windowWidth}
                     />
 
                     <ProtectedRoute
@@ -185,6 +192,7 @@ function App() {
                         loggedIn={loggedIn}
                         savedMovies={savedMovies}
                         onDeleteMovie={deleteMovie}
+                        windowWidth={windowWidth}
                     />
 
                     <ProtectedRoute

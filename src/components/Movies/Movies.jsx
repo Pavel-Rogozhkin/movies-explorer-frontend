@@ -6,14 +6,16 @@ import { useState, useEffect } from "react";
 import MoviesApi from '../../utils/MoviesApi';
 
 function Movies({
+    movies,
     savedMovies,
     onSaveMovie,
     onDeleteMovie,
     loading,
-    setLoading
+    setLoading,
+    windowWidth,
 }) {
 
-    const [filteredMovies, setFilteredMovies] = useState([]);
+    const [filteredMovies, setFilteredMovies] = useState(movies);
     const [searchTask, setSearchTask] = useState('');
     const [isChecked, setIsChecked] = useState(false);
 
@@ -75,10 +77,12 @@ function Movies({
                 <Preloader />
                 :
                 <MoviesList
+                    movies={movies}
                     onSaveMovie={onSaveMovie}
                     filteredMovies={filteredMovies}
                     savedMovies={savedMovies}
                     onDeleteMovie={onDeleteMovie}
+                    windowWidth={windowWidth}
                 />
             }
         </>

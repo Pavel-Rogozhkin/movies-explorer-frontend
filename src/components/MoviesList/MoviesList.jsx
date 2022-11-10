@@ -4,19 +4,20 @@ import MovieItem from '../MovieItem/MovieItem';
 import { useState, useEffect } from 'react';
 
 function MoviesList({
+    movies,
     filteredMovies,
     isButtonMoreUnvisible,
     isSaveButtonTypeDelete,
     savedMovies,
     onSaveMovie,
     onDeleteMovie,
+    windowWidth,
 }) {
 
-    const [moviesList, setMoviesList] = useState(filteredMovies);
+    const [moviesList, setMoviesList] = useState(movies);
     const [params, setParams] = useState({ curNum: 0, moreNum: 0 });
 
     function handleMore() {
-        console.log('fdfdfdsfadsfdsaf');
         if ((filteredMovies.length - moviesList.length) > 0) {
             const addMovies = filteredMovies.slice(
                 moviesList.length,
@@ -26,40 +27,20 @@ function MoviesList({
         };
     };
 
-    // Hook useWindowSize
-    function useWindowSize() {
-        const [windowSize, setWindowSize] = useState({
-            width: undefined,
-            height: undefined,
-        });
-        useEffect(() => {
-            function handleResize() {
-                setWindowSize({
-                    width: window.innerWidth,
-                    height: window.innerHeight,
-                });
-            }
-            window.addEventListener("resize", handleResize);
-            handleResize();
-            return () => window.removeEventListener("resize", handleResize);
-        }, [] );
-        return windowSize;
-    };
-
-    const windowWidth = useWindowSize().width;
-
     useEffect(() => {
         if (windowWidth > 1279) {
             setParams({
                 curNum: 12,
                 moreNum: 3,
             });
-        } else if (windowWidth > 481) {
+        }
+        if (windowWidth > 481 && windowWidth <= 1279) {
             setParams({
                 curNum: 8,
                 moreNum: 2,
             });
-        } else {
+        }
+        if (windowWidth <= 481) {
             setParams({
                 curNum: 5,
                 moreNum: 1,
@@ -67,11 +48,20 @@ function MoviesList({
         };
     }, [windowWidth] );
 
-    useEffect(() => {
-        const list = filteredMovies.filter((m, i) => i < params.curNum );
-        setMoviesList(list);
-     }, [filteredMovies, isSaveButtonTypeDelete, params.curNum] )
+    console.log(params.curNum);
+    console.log(params.moreNum);
 
+    useEffect(() => {
+        // console.log(params.curNum);
+        const list = filteredMovies.filter((m, i) => params.curNum >= m.id );
+        // console.log(list);
+        setMoviesList(list);
+    }, [filteredMovies, params.curNum] );
+
+    // console.log(Array.isArray(movies));
+    // console.log(movies);
+    // console.log(Array.isArray(moviesList));
+    // console.log(moviesList);
     
     return (
         <section className='movies-list__container'>

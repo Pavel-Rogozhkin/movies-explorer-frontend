@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 function SavedMovies({
     savedMovies,
     onDeleteMovie,
+    windowWidth,
 }) {
 
     const [filteredMovies, setFilteredMovies] = useState(savedMovies);
@@ -48,6 +49,7 @@ function SavedMovies({
                 isSaveButtonTypeDelete={true}
                 savedMovies={savedMovies}
                 onDeleteMovie={onDeleteMovie}
+                windowWidth={windowWidth}
             />
         </>
     );
