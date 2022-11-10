@@ -15,7 +15,7 @@ function MoviesList({
 }) {
 
     const [moviesList, setMoviesList] = useState(movies);
-    const [params, setParams] = useState({ curNum: 0, moreNum: 0 });
+    const [params, setParams] = useState({ curNum: 12, moreNum: 3 });
 
     function handleMore() {
         if ((filteredMovies.length - moviesList.length) > 0) {
@@ -51,12 +51,10 @@ function MoviesList({
     console.log(params.curNum);
     console.log(params.moreNum);
 
-    useEffect(() => {
-        // console.log(params.curNum);
-        const list = filteredMovies.filter((m, i) => params.curNum >= m.id );
-        // console.log(list);
-        setMoviesList(list);
-    }, [filteredMovies, params.curNum] );
+    // useEffect(() => {
+    //     const list = filteredMovies.filter((m, i) => params.curNum >= m.id );
+    //     setMoviesList(list);
+    // }, [filteredMovies, params.curNum] );
 
     // console.log(Array.isArray(movies));
     // console.log(movies);
