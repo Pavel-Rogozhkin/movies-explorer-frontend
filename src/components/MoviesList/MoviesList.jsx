@@ -51,10 +51,10 @@ function MoviesList({
     console.log(params.curNum);
     console.log(params.moreNum);
 
-    // useEffect(() => {
-    //     const list = filteredMovies.filter((m, i) => params.curNum >= m.id );
-    //     setMoviesList(list);
-    // }, [filteredMovies, params.curNum] );
+    useEffect(() => {
+        const list = moviesList.filter((m, i) => params.curNum >= m.id );
+        setMoviesList(list);
+    }, [] );
 
     // console.log(Array.isArray(movies));
     // console.log(movies);
