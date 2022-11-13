@@ -55,9 +55,7 @@ function MoviesList({
             const list = moviesList.filter((m, i) => params.curNum >= m.id );
             setMoviesList(list);
         }
-    }, [] );
-
-
+    }, [savedMovies] );
     
     return (
         <section className='movies-list__container'>

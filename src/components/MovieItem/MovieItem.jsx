@@ -1,6 +1,6 @@
 import './MovieItem.css';
 import { MOVIES_API_URL } from '../../utils/consts';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 function MovieItem({
     movie,
@@ -11,10 +11,13 @@ function MovieItem({
     onDeleteMovie,
 }) {
 
-    console.log(movie);
+    // console.log(movie);
     // const savedMovie = savedMovies.find(m => m._id === movie.id); //  Debug !!Change movies to savedMovies!! 
     const savedMovie = savedMovies.find(m => m.nameEN === movie.nameEN); //  Debug !!Change movies to savedMovies!! 
-    const [isSaved, setIsSaved] = useState(false);
+
+    const [isSaved, setIsSaved] = useState();
+
+    // console.log(isSaved);
 
     function handleDeleteMovie(e) {
         e.preventDefault();
@@ -25,8 +28,10 @@ function MovieItem({
     function handleSaveMovie(e) {
         e.preventDefault();
         setIsSaved(!isSaved);
-        onSaveMovie(savedMovie);
+        onSaveMovie(movie);
     };
+
+    // console.log(isSaved && !isSaveButtonTypeDelete);
 
     return (
         <li 
@@ -54,7 +59,7 @@ function MovieItem({
                 <button
                     className={`
                         movie-item__button
-                        ${isSaved ? 'movie-item__button_active' : ''}
+                        ${(isSaved && !isSaveButtonTypeDelete) ? 'movie-item__button_active' : ''}
                         movie-item__button_type_${isSaveButtonTypeDelete ? 'delete' : 'save'}
                     `}
                     type='button'
