@@ -84,6 +84,7 @@ class MainApi {
     };
 
     deleteMovie(id) {
+        console.log(id);
         return fetch(this._url + `/movies/${id}`, {
             method: 'DELETE',
             headers: this._headers,

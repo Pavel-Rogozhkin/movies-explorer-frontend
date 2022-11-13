@@ -51,7 +51,7 @@ function App() {
 
             MainApi.getSavedMovies()
             .then(data => {
-                setSavedMovies(data)
+                setSavedMovies(data.filter((m) => m.owner === currentUser?._id));
             })
             .catch(error => {
                 console.log(error);
@@ -93,6 +93,7 @@ function App() {
             .then(() => {
                 setLoggedIn(false);
                 setCurrentUser({});
+                setSavedMovies([]);
                 localStorage.clear();
                 history.push('/');
             })
@@ -102,8 +103,9 @@ function App() {
     };
 
     function saveMovie(movie) {
-        console.log(savedMovies);
+        console.log(movie);
         let movieOUT = {
+            _id: movie.movieId,
             country: movie.country,
             director: movie.director,
             duration: movie.duration,
@@ -116,10 +118,10 @@ function App() {
             image: `${MOVIES_API_URL}${movie.image.url}`,
             thumbnail: `${MOVIES_API_URL}${movie.image.formats.thumbnail.url}`,
         };
+        // console.log(movieOUT);
         MainApi.setSavedMovies(movieOUT)
             .then(i => {
                 setSavedMovies([ i, ...savedMovies ]);
-                localStorage.setItem('savedMovies', [ i, ...savedMovies ]);
             })
             .catch(error => {
                 console.log(error);
@@ -127,15 +129,23 @@ function App() {
     };
 
     function deleteMovie(movie) {
-        MainApi.deleteMovie(movie.movieId)
-            .then(() => {
-                const moviesList = savedMovies.filter((m) => m.movieId !== movie.movieId);
-                setSavedMovies(moviesList);
-            })
-            .catch(error => {
-                console.log(error);
-            });
+        const foo = savedMovies.filter((m) => m.nameEN === movie.nameEN);
+
+        console.log(foo);
+
+        foo.forEach(element => {
+            MainApi.deleteMovie(element._id)
+                .then(() => {
+                    const moviesList = savedMovies.filter((m) => m._id !== element._id);
+                    setSavedMovies(moviesList);
+                })
+                .catch(error => {
+                    console.log(error);
+                });
+        })
     };
+
+    console.log(savedMovies);
 
     function handleRegister({ name, email, password}) {
         setLoading(true);

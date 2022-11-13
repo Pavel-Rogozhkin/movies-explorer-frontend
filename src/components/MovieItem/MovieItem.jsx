@@ -11,12 +11,14 @@ function MovieItem({
     onDeleteMovie,
 }) {
 
-    const savedMovie = savedMovies.find(m => m.id === movie.id);
+    console.log(movie);
+    // const savedMovie = savedMovies.find(m => m._id === movie.id); //  Debug !!Change movies to savedMovies!! 
+    const savedMovie = savedMovies.find(m => m.nameEN === movie.nameEN); //  Debug !!Change movies to savedMovies!! 
     const [isSaved, setIsSaved] = useState(false);
 
     function handleDeleteMovie(e) {
         e.preventDefault();
-        setIsSaved(false);
+        setIsSaved(!isSaved);
         onDeleteMovie(savedMovie);
     };
 
@@ -46,7 +48,7 @@ function MovieItem({
                 </div>
                 <img
                     className='movie-item__img'
-                    src={movie.img || `${MOVIES_API_URL}${movie.image.url}`}
+                    src={movie.img || `${MOVIES_API_URL}${movie.image.url}` || `${MOVIES_API_URL}${movie.image}`}
                     alt={movie.title || movie.nameRU}
                 />
                 <button
@@ -56,7 +58,7 @@ function MovieItem({
                         movie-item__button_type_${isSaveButtonTypeDelete ? 'delete' : 'save'}
                     `}
                     type='button'
-                    onClick={isSaveButtonTypeDelete ? handleDeleteMovie : handleSaveMovie}
+                    onClick={isSaved || isSaveButtonTypeDelete ? handleDeleteMovie : handleSaveMovie}
                 >
                     Сохранить
                 </button>
