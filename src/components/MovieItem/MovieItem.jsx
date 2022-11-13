@@ -4,13 +4,14 @@ import { useState } from 'react';
 
 function MovieItem({
     movie,
+    movies,
     isSaveButtonTypeDelete,
     savedMovies,
     onSaveMovie,
     onDeleteMovie,
 }) {
 
-    const savedMovie = savedMovies.find(m => m.id === movie.id);
+    const savedMovie = movies.find(m => m.id === movie.id);
     const [isSaved, setIsSaved] = useState(movie.id && savedMovie);
 
     function handleDeleteMovie(e) {
@@ -21,7 +22,7 @@ function MovieItem({
 
     function handleSaveMovie(e) {
         e.preventDefault();
-        setIsSaved(true);
+        setIsSaved(!isSaved);
         onSaveMovie(savedMovie);
     };
 
@@ -55,7 +56,7 @@ function MovieItem({
                         movie-item__button_type_${isSaveButtonTypeDelete ? 'delete' : 'save'}
                     `}
                     type='button'
-                    onClick={isSaved || isSaveButtonTypeDelete ? handleDeleteMovie : handleSaveMovie}
+                    onClick={isSaveButtonTypeDelete ? handleDeleteMovie : handleSaveMovie}
                 >
                     Сохранить
                 </button>

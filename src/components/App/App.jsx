@@ -15,6 +15,7 @@ import MainApi from '../../utils/MainApi';
 import MoviesApi from '../../utils/MoviesApi';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import useWindowSize from '../../utils/useWindowSize';
+import { MOVIES_API_URL } from '../../utils/consts';
 
 function App() {
 
@@ -98,7 +99,20 @@ function App() {
     };
 
     function saveMovie(movie) {
-        MainApi.setSavedMovies(movie)
+        let movieOUT = {
+            country: movie.country,
+            director: movie.director,
+            duration: movie.duration,
+            year: movie.year,
+            description: movie.description,
+            nameRU: movie.nameRU,
+            nameEN: movie.nameEN,
+            trailerLink: movie.trailerLink,
+            movieId: movie.id,
+            image: `${MOVIES_API_URL}${movie.image.url}`,
+            thumbnail: `${MOVIES_API_URL}${movie.image.formats.thumbnail.url}`,
+        };
+        MainApi.setSavedMovies(movieOUT)
             .then(i => {
                 setSavedMovies([ i, ...savedMovies ]);
             })

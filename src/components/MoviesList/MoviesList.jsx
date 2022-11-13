@@ -46,20 +46,12 @@ function MoviesList({
                 moreNum: 1,
             });
         };
-    }, [windowWidth] );
-
-    console.log(params.curNum);
-    console.log(params.moreNum);
+    }, [] );
 
     useEffect(() => {
         const list = moviesList.filter((m, i) => params.curNum >= m.id );
         setMoviesList(list);
     }, [] );
-
-    // console.log(Array.isArray(movies));
-    // console.log(movies);
-    // console.log(Array.isArray(moviesList));
-    // console.log(moviesList);
     
     return (
         <section className='movies-list__container'>
@@ -67,6 +59,7 @@ function MoviesList({
                 {moviesList.map(movie => (
                     <MovieItem
                         movie={movie}
+                        movies={movies}
                         isSaveButtonTypeDelete={isSaveButtonTypeDelete}
                         savedMovies={savedMovies}
                         onSaveMovie={onSaveMovie}
