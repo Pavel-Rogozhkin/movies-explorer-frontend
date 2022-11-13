@@ -11,8 +11,8 @@ function MovieItem({
     onDeleteMovie,
 }) {
 
-    const savedMovie = movies.find(m => m.id === movie.id);
-    const [isSaved, setIsSaved] = useState(movie.id && savedMovie);
+    const savedMovie = savedMovies.find(m => m.id === movie.id);
+    const [isSaved, setIsSaved] = useState(false);
 
     function handleDeleteMovie(e) {
         e.preventDefault();

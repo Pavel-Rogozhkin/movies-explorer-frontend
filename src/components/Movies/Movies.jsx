@@ -4,6 +4,7 @@ import MoviesList from '../MoviesList/MoviesList';
 import Preloader from '../Preloader/Preloader';
 import { useState, useEffect } from "react";
 import MoviesApi from '../../utils/MoviesApi';
+import { hasSelectionSupport } from '@testing-library/user-event/dist/utils';
 
 function Movies({
     movies,
@@ -15,15 +16,18 @@ function Movies({
     windowWidth,
 }) {
 
-    const [filteredMovies, setFilteredMovies] = useState(movies);
+    const [filteredMovies, setFilteredMovies] = useState([]);
     const [searchTask, setSearchTask] = useState('');
     const [isChecked, setIsChecked] = useState(false);
 
-    localStorage.setItem('searchTask', '');
+    useEffect(() => {
+        localStorage.setItem('searchTask', '');
+    }, [] );
 
     function changeCheckbox() {
         setIsChecked(!isChecked);
         localStorage.setItem('isChecked', !isChecked);
+        handleFilteredMovies(movies, !isChecked, '')
     };
 
     function handleFilteredMovies(movies, isChecked, task) {
@@ -31,7 +35,7 @@ function Movies({
         setFilteredMovies(isChecked ?
             moviesToFilter.filter(m => m.duration < 40)
             :
-            moviesToFilter    
+            moviesToFilter.filter(m => m.duration >= 40)
         );
     };
 
@@ -60,11 +64,27 @@ function Movies({
         };
     };
 
+    function sleep(milliseconds) {
+        let t = (new Date()).getTime();
+        let i = 0;
+        while (((new Date()).getTime() - t) < milliseconds) {
+            i = i + 1;
+        }
+    };
+
     useEffect(() => {
-        const task = localStorage.getItem('searchTask');
-        const movies = JSON.parse(localStorage.getItem('movies'));
-        handleFilteredMovies(movies, isChecked, task);
-    }, [isChecked, searchTask] );
+        if (!loading) {
+            const task = localStorage.getItem('searchTask');
+            const movies = JSON.parse(localStorage.getItem('movies'));
+            if (movies !== null) {
+                handleFilteredMovies(movies, isChecked, task);
+            } else {
+                sleep(5000);
+                const movies = JSON.parse(localStorage.getItem('movies'));
+                handleFilteredMovies(movies, isChecked, task);
+            }
+        }
+    }, [isChecked, searchTask, loading] );
 
     return (
         <>

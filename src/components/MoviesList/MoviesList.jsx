@@ -14,7 +14,7 @@ function MoviesList({
     windowWidth,
 }) {
 
-    const [moviesList, setMoviesList] = useState(movies);
+    const [moviesList, setMoviesList] = useState(filteredMovies);
     const [params, setParams] = useState({ curNum: 12, moreNum: 3 });
 
     function handleMore() {

@@ -34,6 +34,8 @@ function App() {
     useEffect( () => {
         if (loggedIn) {
 
+            setLoading(true);
+
             MainApi.getUserInfo()
             .then(( userProfile ) => {
                 setLoggedIn(true);
@@ -47,19 +49,6 @@ function App() {
                 localStorage.clear();
             });
 
-            setLoading(true);
-            MoviesApi.getMovies()
-                .then(data => {
-                    localStorage.setItem('movies', JSON.stringify(data));
-                    setMovies(data);
-                })
-                .catch(error => {
-                    console.log(error);
-                })
-                .finally(() => {
-                    setLoading(false);
-                });
-
             MainApi.getSavedMovies()
             .then(data => {
                 setSavedMovies(data)
@@ -67,6 +56,20 @@ function App() {
             .catch(error => {
                 console.log(error);
             });
+
+            MoviesApi.getMovies()
+                .then(data => {
+                    localStorage.setItem('movies', JSON.stringify(data));
+                    setMovies(data);
+                })
+                .catch(error => {
+                    console.log(error);
+                    setLoading(false);
+                })
+                .finally(() => {
+                    setLoading(false);
+                });
+
         }
     }, [loggedIn] );
 
@@ -99,6 +102,7 @@ function App() {
     };
 
     function saveMovie(movie) {
+        console.log(savedMovies);
         let movieOUT = {
             country: movie.country,
             director: movie.director,
@@ -115,6 +119,7 @@ function App() {
         MainApi.setSavedMovies(movieOUT)
             .then(i => {
                 setSavedMovies([ i, ...savedMovies ]);
+                localStorage.setItem('savedMovies', [ i, ...savedMovies ]);
             })
             .catch(error => {
                 console.log(error);
@@ -122,9 +127,9 @@ function App() {
     };
 
     function deleteMovie(movie) {
-        MainApi.deleteMovie(movie._id)
+        MainApi.deleteMovie(movie.movieId)
             .then(() => {
-                const moviesList = savedMovies.filter((m) => m._id !== movie._id);
+                const moviesList = savedMovies.filter((m) => m.movieId !== movie.movieId);
                 setSavedMovies(moviesList);
             })
             .catch(error => {
@@ -203,6 +208,7 @@ function App() {
                         exact
                         path='/saved-movies'
                         component={SavedMovies}
+                        movies={movies}
                         loggedIn={loggedIn}
                         savedMovies={savedMovies}
                         onDeleteMovie={deleteMovie}
