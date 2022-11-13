@@ -17,6 +17,8 @@ function MoviesList({
     const [moviesList, setMoviesList] = useState(movies);
     const [params, setParams] = useState({ curNum: 12, moreNum: 3 });
 
+    console.log(filteredMovies);
+
     function handleMore() {
         if ((filteredMovies.length - moviesList.length) > 0) {
             const addMovies = filteredMovies.slice(
@@ -50,20 +52,22 @@ function MoviesList({
 
     useEffect(() => {
         if (isSaveButtonTypeDelete) {
-            setMoviesList(savedMovies);
+            const list = savedMovies.filter((m, i) => params.curNum >= i );
+            setMoviesList(list);
         } else {
-            const list = moviesList.filter((m, i) => params.curNum >= m.id );
+            const list = filteredMovies.filter((m, i) => params.curNum >= i );
             setMoviesList(list);
         }
-    }, [savedMovies] );
+    }, [savedMovies, filteredMovies] );
     
+    console.log(moviesList);
+
     return (
         <section className='movies-list__container'>
             <ul className='movies-list'>
                 {moviesList.map(movie => (
                     <MovieItem
                         movie={movie}
-                        movies={movies}
                         isSaveButtonTypeDelete={isSaveButtonTypeDelete}
                         savedMovies={savedMovies}
                         onSaveMovie={onSaveMovie}

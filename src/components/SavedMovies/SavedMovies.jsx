@@ -12,15 +12,16 @@ function SavedMovies({
 
     const [filteredMovies, setFilteredMovies] = useState(savedMovies);
     const [searchTask, setSearchTask] = useState('');
-    const [isChecked, setIsChecked] = useState(localStorage.getItem('isChecked') === 'true');
+    const [isChecked, setIsChecked] = useState(false);
 
     useEffect(() => {
-        handleFilteredMovies(savedMovies, isChecked, searchTask);
-    }, [savedMovies, isChecked, searchTask]);
+        localStorage.setItem('searchTask', '');
+    }, [] );
 
     function changeCheckbox() {
         setIsChecked(!isChecked);
         localStorage.setItem('isChecked', !isChecked);
+        handleFilteredMovies(filteredMovies, !isChecked, '');
     };
 
     function handleFilteredMovies(movies, isChecked, task) {
@@ -28,7 +29,7 @@ function SavedMovies({
         setFilteredMovies(isChecked ?
             moviesToFilter.filter(m => m.duration < 40)
             :
-            moviesToFilter.filter(m => m.duration >= 40) 
+            moviesToFilter.filter(m => m.duration >= 40)
         );
     };
 
@@ -36,6 +37,12 @@ function SavedMovies({
         setSearchTask(searchTask);
         handleFilteredMovies(savedMovies, isChecked, searchTask);
     };
+
+    // Re-render hook
+    useEffect(() => {
+        const task = localStorage.getItem('searchTask');
+        handleFilteredMovies(movies, isChecked, task);
+    }, [isChecked, searchTask] );
 
     return (
         <>

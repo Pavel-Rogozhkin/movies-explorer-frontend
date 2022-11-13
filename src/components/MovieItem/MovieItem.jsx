@@ -4,34 +4,27 @@ import { useEffect, useState } from 'react';
 
 function MovieItem({
     movie,
-    movies,
     isSaveButtonTypeDelete,
     savedMovies,
     onSaveMovie,
     onDeleteMovie,
 }) {
 
-    // console.log(movie);
-    // const savedMovie = savedMovies.find(m => m._id === movie.id); //  Debug !!Change movies to savedMovies!! 
-    const savedMovie = savedMovies.find(m => m.nameEN === movie.nameEN); //  Debug !!Change movies to savedMovies!! 
+    const savedMovie = savedMovies.find(m => m.nameEN === movie.nameEN);
 
-    const [isSaved, setIsSaved] = useState();
-
-    // console.log(isSaved);
+    // const [isSaved, setIsSaved] = useState(false);
 
     function handleDeleteMovie(e) {
         e.preventDefault();
-        setIsSaved(!isSaved);
+        // setIsSaved(!isSaved);
         onDeleteMovie(savedMovie);
     };
 
     function handleSaveMovie(e) {
         e.preventDefault();
-        setIsSaved(!isSaved);
+        // setIsSaved(!isSaved);
         onSaveMovie(movie);
     };
-
-    // console.log(isSaved && !isSaveButtonTypeDelete);
 
     return (
         <li 
@@ -59,11 +52,11 @@ function MovieItem({
                 <button
                     className={`
                         movie-item__button
-                        ${(isSaved && !isSaveButtonTypeDelete) ? 'movie-item__button_active' : ''}
+                        ${(savedMovie && !isSaveButtonTypeDelete) ? 'movie-item__button_active' : ''}
                         movie-item__button_type_${isSaveButtonTypeDelete ? 'delete' : 'save'}
                     `}
                     type='button'
-                    onClick={isSaved || isSaveButtonTypeDelete ? handleDeleteMovie : handleSaveMovie}
+                    onClick={savedMovie || isSaveButtonTypeDelete ? handleDeleteMovie : handleSaveMovie}
                 >
                     Сохранить
                 </button>

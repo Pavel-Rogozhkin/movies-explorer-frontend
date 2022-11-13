@@ -4,7 +4,6 @@ import MoviesList from '../MoviesList/MoviesList';
 import Preloader from '../Preloader/Preloader';
 import { useState, useEffect } from "react";
 import MoviesApi from '../../utils/MoviesApi';
-import { hasSelectionSupport } from '@testing-library/user-event/dist/utils';
 
 function Movies({
     movies,
@@ -27,7 +26,7 @@ function Movies({
     function changeCheckbox() {
         setIsChecked(!isChecked);
         localStorage.setItem('isChecked', !isChecked);
-        handleFilteredMovies(movies, !isChecked, '')
+        handleFilteredMovies(filteredMovies, !isChecked, '');
     };
 
     function handleFilteredMovies(movies, isChecked, task) {
@@ -58,31 +57,17 @@ function Movies({
                         setLoading(false);
                     })
             } else {
-                handleFilteredMovies(JSON.parse(localStorage.getItem('movies')), isChecked, searchTask);
+                handleFilteredMovies(localStorage.getItem('movies'), isChecked, searchTask);
                 setLoading(false);
             };
         };
     };
 
-    function sleep(milliseconds) {
-        let t = (new Date()).getTime();
-        let i = 0;
-        while (((new Date()).getTime() - t) < milliseconds) {
-            i = i + 1;
-        }
-    };
-
+    // Re-render hook
     useEffect(() => {
         if (!loading) {
             const task = localStorage.getItem('searchTask');
-            const movies = JSON.parse(localStorage.getItem('movies'));
-            if (movies !== null) {
-                handleFilteredMovies(movies, isChecked, task);
-            } else {
-                sleep(5000);
-                const movies = JSON.parse(localStorage.getItem('movies'));
-                handleFilteredMovies(movies, isChecked, task);
-            }
+            handleFilteredMovies(movies, isChecked, task);
         }
     }, [isChecked, searchTask, loading] );
 

@@ -103,7 +103,6 @@ function App() {
     };
 
     function saveMovie(movie) {
-        console.log(movie);
         let movieOUT = {
             _id: movie.movieId,
             country: movie.country,
@@ -118,7 +117,6 @@ function App() {
             image: `${MOVIES_API_URL}${movie.image.url}`,
             thumbnail: `${MOVIES_API_URL}${movie.image.formats.thumbnail.url}`,
         };
-        // console.log(movieOUT);
         MainApi.setSavedMovies(movieOUT)
             .then(i => {
                 setSavedMovies([ i, ...savedMovies ]);
@@ -144,8 +142,6 @@ function App() {
                 });
         })
     };
-
-    console.log(savedMovies);
 
     function handleRegister({ name, email, password}) {
         setLoading(true);
