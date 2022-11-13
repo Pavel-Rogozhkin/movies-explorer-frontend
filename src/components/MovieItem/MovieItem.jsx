@@ -48,7 +48,7 @@ function MovieItem({
                 </div>
                 <img
                     className='movie-item__img'
-                    src={movie.img || `${MOVIES_API_URL}${movie.image.url}` || `${MOVIES_API_URL}${movie.image}`}
+                    src={isSaveButtonTypeDelete ? `${movie.image}` : `${MOVIES_API_URL}${movie.image.url}`}
                     alt={movie.title || movie.nameRU}
                 />
                 <button
