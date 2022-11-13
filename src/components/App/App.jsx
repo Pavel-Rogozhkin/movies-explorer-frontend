@@ -129,8 +129,6 @@ function App() {
     function deleteMovie(movie) {
         const foo = savedMovies.filter((m) => m.nameEN === movie.nameEN);
 
-        console.log(foo);
-
         foo.forEach(element => {
             MainApi.deleteMovie(element._id)
                 .then(() => {

@@ -8,8 +8,6 @@ function Input({
     value,
     placeholder,
     onChange,
-    minLength,
-    maxLength,
     pattern,
     errorMessage,
 }) {
