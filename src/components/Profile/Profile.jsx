@@ -45,6 +45,14 @@ function Profile({
         };
     };
 
+    const isValidProfile = (isValid
+        &&
+            (values.name !== currentUser.name
+        ||
+             values.email !== currentUser.email)
+    );
+  
+    
     return (
         <div className='profile'>
             <h2 className='profile__welcome'>
@@ -59,7 +67,7 @@ function Profile({
                     'Редактировать'
                 }
                 onSubmit={handleSubmitProfile}
-                isValid={isValid}
+                isValid={isValidProfile}
             >
                 <Input 
                     place='profile'
