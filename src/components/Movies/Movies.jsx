@@ -34,7 +34,7 @@ function Movies({
         setFilteredMovies(isChecked ?
             moviesToFilter.filter(m => m.duration < 40)
             :
-            moviesToFilter.filter(m => m.duration >= 40)
+            moviesToFilter
         );
     };
 
