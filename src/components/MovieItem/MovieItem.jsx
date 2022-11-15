@@ -26,6 +26,8 @@ function MovieItem({
         onSaveMovie(movie);
     };
 
+    console.log(movie);
+
     return (
         <li 
             className='movie-item'

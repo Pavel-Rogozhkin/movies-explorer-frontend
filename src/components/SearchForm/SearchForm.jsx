@@ -19,16 +19,24 @@ function SearchForm({
         isValid,
     } = useFormWithValidation();
 
-    useEffect(() => {
-        const task = localStorage.getItem('searchTask');
-        if (task) {
-            setValues({ task });
-        };
-    }, [setValues] );
+    // useEffect(() => {
+    //     const task = localStorage.getItem('searchTask');
+    //     if (task) {
+    //         setValues({ task });
+    //     };
+    // }, [values] );
+
+    // useEffect(() => {
+    //     if (values) {
+    //         localStorage.setItem('searchTask', values);
+    //         setValues(values);
+    //     }
+    // }, [values] );
 
     function handleSubmitSearch(e) {
         e.preventDefault();
-        onSubmitSearch(values.task);
+        console.log(values.search);
+        onSubmitSearch(values.search);
     };
 
     return (
@@ -45,7 +53,7 @@ function SearchForm({
                         name="search"
                         place="search"
                         placeholder="Фильм"
-                        value={values.task || ''}
+                        value={values.search || ''}
                         errorMessage={errors.name}
                         onChange={handleChange}
                     />

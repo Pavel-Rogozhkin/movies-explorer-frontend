@@ -22,6 +22,10 @@ function Movies({
         localStorage.setItem('searchTask', '');
     }, [] );
 
+    useEffect(() => {
+        localStorage.setItem('filteredMovies', JSON.stringify(filteredMovies));
+    }, [setFilteredMovies] );
+
     function changeCheckbox() {
         setIsChecked(!isChecked);
         localStorage.setItem('isChecked', !isChecked);
@@ -35,6 +39,7 @@ function Movies({
             :
             moviesToFilter
         );
+        // localStorage.setItem('filteredMovies', filteredMovies);
     };
 
     function handleSubmitSearch(searchTask) {
@@ -56,7 +61,7 @@ function Movies({
                         setLoading(false);
                     })
             } else {
-                handleFilteredMovies(localStorage.getItem('movies'), isChecked, searchTask);
+                handleFilteredMovies(JSON.parse(localStorage.getItem('movies')), isChecked, searchTask);
                 setLoading(false);
             };
         };
@@ -64,12 +69,10 @@ function Movies({
 
     // Re-render hook
     useEffect(() => {
-        if (!loading) {
-            const task = localStorage.getItem('searchTask');
-            const movies = localStorage.getItem('movies');
-            if (movies) {
-                handleFilteredMovies(movies, isChecked, task);
-            };
+        const task = localStorage.getItem('searchTask');
+        const movies = JSON.parse(localStorage.getItem('movies'));
+        if (task && movies) {
+            handleFilteredMovies(movies, isChecked, task);
         };
     }, [isChecked, searchTask] );
 

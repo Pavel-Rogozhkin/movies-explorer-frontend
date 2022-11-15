@@ -16,7 +16,7 @@ function MoviesList({
     const [moviesList, setMoviesList] = useState(filteredMovies);
     const [params, setParams] = useState({ curNum: 12, moreNum: 3 });
 
-    console.log(filteredMovies);
+    // console.log(filteredMovies);
 
     function handleMore() {
         if ((filteredMovies.length - moviesList.length) > 0) {
@@ -59,7 +59,7 @@ function MoviesList({
         }
     }, [savedMovies, filteredMovies] );
     
-    console.log(moviesList);
+    // console.log(moviesList);
 
     return (
         <section className='movies-list__container'>
@@ -75,14 +75,14 @@ function MoviesList({
                 ))}
             </ul>
             <p className='movies-list__error'>
-                {moviesList ?
+                {moviesList.length === 0 ?
                     'Ничего не найдено'
                     :
-                    'dfdf'
+                    ''
                 }
             </p>
             <button 
-                className={`movies-list__more ${(isButtonMoreUnvisible || moviesList) ? 'movies-list__more_unvisible' : ''}`}
+                className={`movies-list__more ${(isButtonMoreUnvisible || moviesList.length === 0) ? 'movies-list__more_unvisible' : ''}`}
                 type='button'
                 aria-label="Ещё"
                 onClick={handleMore}
