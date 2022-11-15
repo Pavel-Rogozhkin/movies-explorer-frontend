@@ -29,7 +29,7 @@ function MovieItem({
     return (
         <li 
             className='movie-item'
-            key={movie.id}
+            key={movie.id || movie._id}
         >
             <a
                 href={movie.trailerLink}
