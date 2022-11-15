@@ -11,20 +11,15 @@ function SavedMovies({
 
     const [filteredMovies, setFilteredMovies] = useState(savedMovies);
     const [searchTask, setSearchTask] = useState('');
-    const [isChecked, setIsChecked] = useState(false);
-
-    useEffect(() => {
-        localStorage.setItem('searchTask', '');
-    }, [] );
+    const [isChecked, setIsChecked] = useState(localStorage.getItem('isChecked') === 'true' ? true : false);
 
     function changeCheckbox() {
         setIsChecked(!isChecked);
         localStorage.setItem('isChecked', !isChecked);
-        handleFilteredMovies(filteredMovies, !isChecked, '');
     };
 
     function handleFilteredMovies(movies, isChecked, task) {
-        const moviesToFilter = movies.filter(m => m.nameRU.toLowerCase().includes(task.toLowerCase()));
+        const moviesToFilter = movies.filter(m => m.nameRU.toLowerCase().includes(task.toLowerCase()) || m.nameEN.toLowerCase().includes(task.toLowerCase()));
         setFilteredMovies(isChecked ?
             moviesToFilter.filter(m => m.duration < 40)
             :
@@ -33,16 +28,16 @@ function SavedMovies({
     };
 
     function handleSubmitSearch(searchTask) {
-        setSearchTask(searchTask);
-        handleFilteredMovies(savedMovies, isChecked, searchTask);
+        if (searchTask) {
+            setSearchTask(searchTask);
+            handleFilteredMovies(savedMovies, isChecked, searchTask);
+        };
     };
 
     // Re-render hook
     useEffect(() => {
-        const task = localStorage.getItem('searchTask');
-        const movies = localStorage.getItem('movies');
-        handleFilteredMovies(movies, isChecked, task);
-    }, [isChecked, searchTask] );
+        handleFilteredMovies(savedMovies, isChecked, searchTask);
+    }, [isChecked, searchTask, savedMovies] );
 
     return (
         <>
@@ -52,7 +47,6 @@ function SavedMovies({
                 isChecked={isChecked}
             />
             <MoviesList
-                movies={savedMovies}
                 filteredMovies={filteredMovies}
                 isButtonMoreUnvisible={true}
                 isSaveButtonTypeDelete={true}

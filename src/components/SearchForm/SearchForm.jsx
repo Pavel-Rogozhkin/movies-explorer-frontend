@@ -13,25 +13,10 @@ function SearchForm({
 
     const {
         values,
-        setValues,
         handleChange,
         errors,
         isValid,
     } = useFormWithValidation();
-
-    // useEffect(() => {
-    //     const task = localStorage.getItem('searchTask');
-    //     if (task) {
-    //         setValues({ task });
-    //     };
-    // }, [values] );
-
-    // useEffect(() => {
-    //     if (values) {
-    //         localStorage.setItem('searchTask', values);
-    //         setValues(values);
-    //     }
-    // }, [values] );
 
     function handleSubmitSearch(e) {
         e.preventDefault();

@@ -12,7 +12,6 @@ import Footer from '../Footer/Footer';
 import { useState, useEffect } from 'react';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext.js';
 import MainApi from '../../utils/MainApi';
-import MoviesApi from '../../utils/MoviesApi';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import useWindowSize from '../../utils/useWindowSize';
 import { MOVIES_API_URL } from '../../utils/consts';
@@ -35,6 +34,7 @@ function App() {
 
             MainApi.getUserInfo()
             .then(( userProfile ) => {
+                setLoading(true);
                 setLoggedIn(true);
                 localStorage.setItem('loggedIn', true);
                 setCurrentUser(userProfile);
@@ -44,17 +44,26 @@ function App() {
                 setLoggedIn(false);
                 setCurrentUser({});
                 localStorage.clear();
+                setLoading(false);
+            })
+            .finally(() => {
+                setLoading(false);
             });
 
             MainApi.getSavedMovies()
             .then(data => {
+                setLoading(true);
                 setSavedMovies(data.filter((m) => m.owner === currentUser?._id));
             })
             .catch(error => {
                 console.log(error);
+                setLoading(false);
+            })
+            .finally(() => {
+                setLoading(false);
             });
 
-        }
+        };
     }, [loggedIn] );
 
     // functions:

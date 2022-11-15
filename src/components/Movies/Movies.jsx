@@ -16,43 +16,34 @@ function Movies({
 
     const [filteredMovies, setFilteredMovies] = useState([]);
     const [searchTask, setSearchTask] = useState('');
-    const [isChecked, setIsChecked] = useState(false);
-
-    useEffect(() => {
-        localStorage.setItem('searchTask', '');
-    }, [] );
-
-    useEffect(() => {
-        localStorage.setItem('filteredMovies', JSON.stringify(filteredMovies));
-    }, [filteredMovies] );
+    const [isChecked, setIsChecked] = useState(localStorage.getItem('isChecked') === 'true' ? true : false);
 
     function changeCheckbox() {
         setIsChecked(!isChecked);
         localStorage.setItem('isChecked', !isChecked);
-        handleFilteredMovies(filteredMovies, !isChecked, '');
     };
 
     function handleFilteredMovies(movies, isChecked, task) {
-        const moviesToFilter = movies.filter(m => m.nameRU.toLowerCase().includes(task.toLowerCase()));
+        const moviesToFilter = movies.filter(m => m.nameRU.toLowerCase().includes(task.toLowerCase()) || m.nameEN.toLowerCase().includes(task.toLowerCase()));
         setFilteredMovies(isChecked ?
             moviesToFilter.filter(m => m.duration < 40)
             :
             moviesToFilter
         );
-        // localStorage.setItem('filteredMovies', filteredMovies);
     };
 
     function handleSubmitSearch(searchTask) {
         if (searchTask) {
             setSearchTask(searchTask);
             localStorage.setItem('searchTask', searchTask);
-            localStorage.setItem('isChecked', isChecked)
+            localStorage.setItem('isChecked', isChecked);
             if (!localStorage.getItem('movies')) {
                 setLoading(true);
                 MoviesApi.getMovies()
                     .then(data => {
                         handleFilteredMovies(data, isChecked, searchTask);
                         localStorage.setItem('movies', JSON.stringify(data));
+                        localStorage.setItem('filteredMovies', JSON.stringify(data));
                     })
                     .catch(error => {
                         console.log(error);
@@ -70,9 +61,9 @@ function Movies({
     // Re-render hook
     useEffect(() => {
         const task = localStorage.getItem('searchTask');
-        const movies = JSON.parse(localStorage.getItem('movies'));
-        if (task && movies) {
-            handleFilteredMovies(movies, isChecked, task);
+        const filteredMovies = JSON.parse(localStorage.getItem('filteredMovies'));
+        if (task && filteredMovies) {
+            handleFilteredMovies(filteredMovies, isChecked, task);
         };
     }, [isChecked, searchTask] );
 

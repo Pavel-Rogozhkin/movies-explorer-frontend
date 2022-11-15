@@ -16,8 +16,6 @@ function MoviesList({
     const [moviesList, setMoviesList] = useState(filteredMovies);
     const [params, setParams] = useState({ curNum: 12, moreNum: 3 });
 
-    // console.log(filteredMovies);
-
     function handleMore() {
         if ((filteredMovies.length - moviesList.length) > 0) {
             const addMovies = filteredMovies.slice(
@@ -58,8 +56,6 @@ function MoviesList({
             setMoviesList(list);
         }
     }, [savedMovies, filteredMovies] );
-    
-    // console.log(moviesList);
 
     return (
         <section className='movies-list__container'>

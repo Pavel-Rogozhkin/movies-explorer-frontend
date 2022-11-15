@@ -1,6 +1,5 @@
 import './MovieItem.css';
 import { MOVIES_API_URL } from '../../utils/consts';
-import { useEffect, useState } from 'react';
 
 function MovieItem({
     movie,
@@ -12,21 +11,15 @@ function MovieItem({
 
     const savedMovie = savedMovies.find(m => m.nameEN === movie.nameEN);
 
-    // const [isSaved, setIsSaved] = useState(false);
-
     function handleDeleteMovie(e) {
         e.preventDefault();
-        // setIsSaved(!isSaved);
         onDeleteMovie(savedMovie);
     };
 
     function handleSaveMovie(e) {
         e.preventDefault();
-        // setIsSaved(!isSaved);
         onSaveMovie(movie);
     };
-
-    console.log(movie);
 
     return (
         <li 
