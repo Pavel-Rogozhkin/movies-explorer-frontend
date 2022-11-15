@@ -24,7 +24,6 @@ function App() {
     const [loggedIn, setLoggedIn] = useState(localStorage.getItem('loggedIn'));
     const [loading,  setLoading] = useState(false);
     const [savedMovies, setSavedMovies] = useState([]);
-    const [movies, setMovies] = useState([]);
     
     const windowWidth = useWindowSize().width;
 
@@ -33,8 +32,6 @@ function App() {
     // hooks:
     useEffect( () => {
         if (loggedIn) {
-
-            setLoading(true);
 
             MainApi.getUserInfo()
             .then(( userProfile ) => {
@@ -56,19 +53,6 @@ function App() {
             .catch(error => {
                 console.log(error);
             });
-
-            MoviesApi.getMovies()
-                .then(data => {
-                    localStorage.setItem('movies', JSON.stringify(data));
-                    setMovies(data);
-                })
-                .catch(error => {
-                    console.log(error);
-                    setLoading(false);
-                })
-                .finally(() => {
-                    setLoading(false);
-                });
 
         }
     }, [loggedIn] );
@@ -199,7 +183,6 @@ function App() {
                         path='/movies'
                         component={Movies}
                         loggedIn={loggedIn}
-                        movies={movies}
                         savedMovies={savedMovies}
                         onSaveMovie={saveMovie}
                         onDeleteMovie={deleteMovie}
@@ -212,7 +195,6 @@ function App() {
                         exact
                         path='/saved-movies'
                         component={SavedMovies}
-                        movies={movies}
                         loggedIn={loggedIn}
                         savedMovies={savedMovies}
                         onDeleteMovie={deleteMovie}

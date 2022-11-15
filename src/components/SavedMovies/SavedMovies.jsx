@@ -4,7 +4,6 @@ import MoviesList from '../MoviesList/MoviesList';
 import { useState, useEffect } from "react";
 
 function SavedMovies({
-    movies,
     savedMovies,
     onDeleteMovie,
     windowWidth,
@@ -41,6 +40,7 @@ function SavedMovies({
     // Re-render hook
     useEffect(() => {
         const task = localStorage.getItem('searchTask');
+        const movies = localStorage.getItem('movies');
         handleFilteredMovies(movies, isChecked, task);
     }, [isChecked, searchTask] );
 

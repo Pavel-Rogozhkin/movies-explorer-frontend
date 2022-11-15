@@ -4,7 +4,6 @@ import MovieItem from '../MovieItem/MovieItem';
 import { useState, useEffect } from 'react';
 
 function MoviesList({
-    movies,
     filteredMovies,
     isButtonMoreUnvisible,
     isSaveButtonTypeDelete,
@@ -14,7 +13,7 @@ function MoviesList({
     windowWidth,
 }) {
 
-    const [moviesList, setMoviesList] = useState(movies);
+    const [moviesList, setMoviesList] = useState(filteredMovies);
     const [params, setParams] = useState({ curNum: 12, moreNum: 3 });
 
     console.log(filteredMovies);
@@ -75,8 +74,15 @@ function MoviesList({
                     />
                 ))}
             </ul>
+            <p className='movies-list__error'>
+                {moviesList ?
+                    'Ничего не найдено'
+                    :
+                    'dfdf'
+                }
+            </p>
             <button 
-                className={`movies-list__more ${isButtonMoreUnvisible ? 'movies-list__more_unvisible' : ''}`}
+                className={`movies-list__more ${(isButtonMoreUnvisible || moviesList) ? 'movies-list__more_unvisible' : ''}`}
                 type='button'
                 aria-label="Ещё"
                 onClick={handleMore}

@@ -6,7 +6,6 @@ import { useState, useEffect } from "react";
 import MoviesApi from '../../utils/MoviesApi';
 
 function Movies({
-    movies,
     savedMovies,
     onSaveMovie,
     onDeleteMovie,
@@ -67,9 +66,12 @@ function Movies({
     useEffect(() => {
         if (!loading) {
             const task = localStorage.getItem('searchTask');
-            handleFilteredMovies(movies, isChecked, task);
-        }
-    }, [isChecked, searchTask, loading] );
+            const movies = localStorage.getItem('movies');
+            if (movies) {
+                handleFilteredMovies(movies, isChecked, task);
+            };
+        };
+    }, [isChecked, searchTask] );
 
     return (
         <>
@@ -82,7 +84,6 @@ function Movies({
                 <Preloader />
                 :
                 <MoviesList
-                    movies={movies}
                     onSaveMovie={onSaveMovie}
                     filteredMovies={filteredMovies}
                     savedMovies={savedMovies}

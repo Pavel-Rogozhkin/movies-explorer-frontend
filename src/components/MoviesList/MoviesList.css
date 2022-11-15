@@ -34,6 +34,14 @@
     cursor: pointer;
 }
 
+.movies-list__error {
+    display: block;
+    height: 12px;
+    font-size: 10px;
+    line-height: 12px;
+    color: #EE3465;
+}
+
 .movies-list__more_unvisible {
     visibility: hidden;
 }
