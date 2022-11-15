@@ -13,18 +13,22 @@ function SearchForm({
 
     const {
         values,
+        setValues,
         handleChange,
         errors,
         isValid,
     } = useFormWithValidation();
 
     useEffect(() => {
-        localStorage.setItem('searchTask', values[0]);
-    }, [values] );
+        const task = localStorage.getItem('searchTask');
+        if (task) {
+            setValues({ task });
+        };
+    }, [setValues] );
 
     function handleSubmitSearch(e) {
         e.preventDefault();
-        onSubmitSearch(values.search);
+        onSubmitSearch(values.task);
     };
 
     return (
@@ -41,6 +45,7 @@ function SearchForm({
                         name="search"
                         place="search"
                         placeholder="Фильм"
+                        value={values.task || ''}
                         errorMessage={errors.name}
                         onChange={handleChange}
                     />
