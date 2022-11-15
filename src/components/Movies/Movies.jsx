@@ -24,7 +24,7 @@ function Movies({
 
     useEffect(() => {
         localStorage.setItem('filteredMovies', JSON.stringify(filteredMovies));
-    }, [setFilteredMovies] );
+    }, [filteredMovies] );
 
     function changeCheckbox() {
         setIsChecked(!isChecked);
