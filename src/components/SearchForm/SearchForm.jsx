@@ -9,20 +9,30 @@ function SearchForm({
     onSubmitSearch,
     changeCheckbox,
     isChecked,
+    isPageSave,
 }) {
 
     const {
         values,
         handleChange,
-        errors,
+        setValues,
         isValid,
     } = useFormWithValidation();
 
     function handleSubmitSearch(e) {
         e.preventDefault();
-        console.log(values.search);
+        console.log(values);
         onSubmitSearch(values.search);
     };
+
+    useEffect(() => {
+        if (!isPageSave) {
+            const task = localStorage.getItem('searchTask');
+            if (task) {
+                setValues({ search: task });
+            };
+        };
+    }, [setValues, isPageSave] );
 
     return (
         <section className='search'>
@@ -39,7 +49,6 @@ function SearchForm({
                         place="search"
                         placeholder="Фильм"
                         value={values.search || ''}
-                        errorMessage={errors.name}
                         onChange={handleChange}
                     />
                 </Form>

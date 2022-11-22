@@ -45,6 +45,7 @@ function SavedMovies({
                 onSubmitSearch={handleSubmitSearch}
                 changeCheckbox={changeCheckbox}
                 isChecked={isChecked}
+                isPageSave={true}
             />
             <MoviesList
                 filteredMovies={filteredMovies}

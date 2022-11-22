@@ -1,5 +1,4 @@
 import './MoviesList.css';
-// import moviesArray from '../../utils/moviesArray'; // default movies
 import MovieItem from '../MovieItem/MovieItem';
 import { useState, useEffect } from 'react';
 
@@ -49,10 +48,10 @@ function MoviesList({
 
     useEffect(() => {
         if (isSaveButtonTypeDelete) {
-            const list = savedMovies.filter((m, i) => params.curNum >= i );
+            const list = savedMovies.filter((m, i) => params.curNum > i );
             setMoviesList(list);
         } else {
-            const list = filteredMovies.filter((m, i) => params.curNum >= i );
+            const list = filteredMovies.filter((m, i) => params.curNum > i );
             setMoviesList(list);
         }
     }, [savedMovies, filteredMovies] );
@@ -78,7 +77,7 @@ function MoviesList({
                 }
             </p>
             <button 
-                className={`movies-list__more ${(isButtonMoreUnvisible || moviesList.length === 0) ? 'movies-list__more_unvisible' : ''}`}
+                className={`movies-list__more ${(isButtonMoreUnvisible || moviesList.length === 0 || moviesList.length === filteredMovies.length) ? 'movies-list__more_unvisible' : ''}`}
                 type='button'
                 aria-label="Ещё"
                 onClick={handleMore}

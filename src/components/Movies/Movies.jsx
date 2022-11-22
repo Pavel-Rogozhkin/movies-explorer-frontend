@@ -16,7 +16,7 @@ function Movies({
 
     const [filteredMovies, setFilteredMovies] = useState([]);
     const [searchTask, setSearchTask] = useState('');
-    const [isChecked, setIsChecked] = useState(localStorage.getItem('isChecked') === 'true' ? true : false);
+    const [isChecked, setIsChecked] = useState(false);
 
     function changeCheckbox() {
         setIsChecked(!isChecked);
@@ -25,11 +25,16 @@ function Movies({
 
     function handleFilteredMovies(movies, isChecked, task) {
         const moviesToFilter = movies.filter(m => m.nameRU.toLowerCase().includes(task.toLowerCase()) || m.nameEN.toLowerCase().includes(task.toLowerCase()));
-        setFilteredMovies(isChecked ?
+        setFilteredMovies(isChecked ? 
             moviesToFilter.filter(m => m.duration < 40)
             :
             moviesToFilter
         );
+        localStorage.setItem('filteredMovies', JSON.stringify(isChecked ? 
+            moviesToFilter.filter(m => m.duration < 40)
+            :
+            moviesToFilter
+        ));
     };
 
     function handleSubmitSearch(searchTask) {
@@ -67,12 +72,25 @@ function Movies({
         };
     }, [isChecked, searchTask] );
 
+    useEffect(() => {
+        if (localStorage.getItem('filteredMovies')) {
+            setFilteredMovies(JSON.parse(localStorage.getItem('filteredMovies')));
+        };
+        if (localStorage.getItem('isChecked')) {
+            setIsChecked(true);
+        };
+        if (localStorage.getItem('searchTask')) {
+            setFilteredMovies(localStorage.getItem('searchTask'));
+        };
+    }, [] );
+
     return (
         <>
             <SearchForm
                 onSubmitSearch={handleSubmitSearch}
                 changeCheckbox={changeCheckbox}
                 isChecked={isChecked}
+                isPageSave={false}
             />
             {loading ?
                 <Preloader />
