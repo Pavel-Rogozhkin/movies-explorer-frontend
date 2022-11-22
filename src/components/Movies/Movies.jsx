@@ -80,9 +80,11 @@ function Movies({
             setIsChecked(true);
         };
         if (localStorage.getItem('searchTask')) {
-            setFilteredMovies(localStorage.getItem('searchTask'));
+            setSearchTask(localStorage.getItem('searchTask'));
         };
     }, [] );
+
+    console.log(filteredMovies);
 
     return (
         <>

@@ -48,12 +48,16 @@ function MoviesList({
 
     useEffect(() => {
         if (isSaveButtonTypeDelete) {
-            const list = savedMovies.filter((m, i) => params.curNum > i );
-            setMoviesList(list);
+            if (savedMovies) {
+                const list = savedMovies.filter((m, i) => params.curNum > i );
+                setMoviesList(list);
+            };
         } else {
-            const list = filteredMovies.filter((m, i) => params.curNum > i );
-            setMoviesList(list);
-        }
+            if (filteredMovies) {
+                const list = filteredMovies.filter((m, i) => params.curNum > i );
+                setMoviesList(list);
+            };
+        };
     }, [savedMovies, filteredMovies] );
 
     return (
@@ -62,6 +66,7 @@ function MoviesList({
                 {moviesList.map(movie => (
                     <MovieItem
                         movie={movie}
+                        key={movie.id || movie._id}
                         isSaveButtonTypeDelete={isSaveButtonTypeDelete}
                         savedMovies={savedMovies}
                         onSaveMovie={onSaveMovie}
