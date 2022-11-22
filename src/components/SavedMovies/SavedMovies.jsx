@@ -39,6 +39,18 @@ function SavedMovies({
         handleFilteredMovies(savedMovies, isChecked, searchTask);
     }, [isChecked, searchTask, savedMovies] );
 
+    useEffect(() => {
+        if (localStorage.getItem('filteredMovies')) {
+            setFilteredMovies(JSON.parse(localStorage.getItem('filteredMovies')));
+        };
+        if (localStorage.getItem('isChecked')) {
+            setIsChecked(true);
+        };
+        if (localStorage.getItem('searchTask')) {
+            setSearchTask(localStorage.getItem('searchTask'));
+        };
+    }, [] );
+
     return (
         <>
             <SearchForm
