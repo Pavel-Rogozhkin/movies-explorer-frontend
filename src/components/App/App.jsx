@@ -29,31 +29,15 @@ function App() {
     const history = useHistory();
 
     // hooks:
+
     useEffect( () => {
         if (loggedIn) {
-
-            MainApi.getUserInfo()
-            .then(( userProfile ) => {
-                setLoading(true);
-                setLoggedIn(true);
-                localStorage.setItem('loggedIn', true);
-                setCurrentUser(userProfile);
-            })
-            .catch(error => {
-                console.log(error);
-                setLoggedIn(false);
-                setCurrentUser({});
-                localStorage.clear();
-                setLoading(false);
-            })
-            .finally(() => {
-                setLoading(false);
-            });
 
             MainApi.getSavedMovies()
             .then(data => {
                 setLoading(true);
-                setSavedMovies(data.filter((m) => m.owner === currentUser?._id));
+                localStorage.setItem('savedMovies', JSON.stringify(data));
+                setSavedMovies(data);
             })
             .catch(error => {
                 console.log(error);
@@ -64,7 +48,35 @@ function App() {
             });
 
         };
-    }, [loggedIn] );
+    }, [loggedIn, currentUser] );
+
+    useEffect( () => {
+
+        MainApi.getUserInfo()
+        .then(( userProfile ) => {
+            console.log(userProfile);
+            setLoading(true);
+            setCurrentUser({
+                name: userProfile.name,
+                email: userProfile.email,
+            });
+            setLoggedIn(true);
+            localStorage.setItem('loggedIn', true);
+        })
+        .catch(error => {
+            console.log('errr');
+            console.log(error);
+            setLoggedIn(false);
+            setCurrentUser({});
+            localStorage.clear();
+            setLoading(false);
+        })
+        .finally(() => {
+            setLoading(false);
+            console.log('final');
+        });
+
+    }, [] );
 
     // functions:
     function handleSetUserInfo(data) {
@@ -89,6 +101,7 @@ function App() {
                 setSavedMovies([]);
                 localStorage.clear();
                 history.push('/');
+                console.clear();
             })
             .catch(error => {
                 console.log(error);
@@ -157,8 +170,8 @@ function App() {
         MainApi.auth({ email, password })
             .then(res => {
                 setCurrentUser({
-                    name: res.name,
-                    email: res.email,
+                    name: res.data.name,
+                    email: res.data.email,
                 });
                 setLoggedIn(true);
                 localStorage.setItem('loggedIn', true);

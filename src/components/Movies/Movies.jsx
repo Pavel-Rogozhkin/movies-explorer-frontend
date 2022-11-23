@@ -76,15 +76,15 @@ function Movies({
         if (localStorage.getItem('filteredMovies')) {
             setFilteredMovies(JSON.parse(localStorage.getItem('filteredMovies')));
         };
-        if (localStorage.getItem('isChecked')) {
+        if (localStorage.getItem('isChecked') === 'true') {
             setIsChecked(true);
+        } else {
+            setIsChecked(false);
         };
         if (localStorage.getItem('searchTask')) {
             setSearchTask(localStorage.getItem('searchTask'));
         };
     }, [] );
-
-    console.log(filteredMovies);
 
     return (
         <>

@@ -9,9 +9,9 @@ function SavedMovies({
     windowWidth,
 }) {
 
-    const [filteredMovies, setFilteredMovies] = useState(savedMovies);
+    const [filteredMovies, setFilteredMovies] = useState([]);
     const [searchTask, setSearchTask] = useState('');
-    const [isChecked, setIsChecked] = useState(localStorage.getItem('isChecked') === 'true' ? true : false);
+    const [isChecked, setIsChecked] = useState(false);
 
     function changeCheckbox() {
         setIsChecked(!isChecked);
@@ -25,6 +25,11 @@ function SavedMovies({
             :
             moviesToFilter
         );
+        localStorage.setItem('filteredMovies', JSON.stringify(isChecked ? 
+            moviesToFilter.filter(m => m.duration < 40)
+            :
+            moviesToFilter
+        ));
     };
 
     function handleSubmitSearch(searchTask) {
@@ -35,16 +40,15 @@ function SavedMovies({
     };
 
     // Re-render hook
-    useEffect(() => {
-        handleFilteredMovies(savedMovies, isChecked, searchTask);
-    }, [isChecked, searchTask, savedMovies] );
+    // useEffect(() => {
+    //     handleFilteredMovies(savedMovies, isChecked, searchTask);
+    // }, [isChecked, searchTask, savedMovies] );
 
     useEffect(() => {
-        if (localStorage.getItem('filteredMovies')) {
-            setFilteredMovies(JSON.parse(localStorage.getItem('filteredMovies')));
-        };
-        if (localStorage.getItem('isChecked')) {
+        if (localStorage.getItem('isChecked') === 'true') {
             setIsChecked(true);
+        } else {
+            setIsChecked(false);
         };
         if (localStorage.getItem('searchTask')) {
             setSearchTask(localStorage.getItem('searchTask'));

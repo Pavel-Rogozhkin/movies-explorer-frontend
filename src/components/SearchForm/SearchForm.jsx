@@ -21,7 +21,6 @@ function SearchForm({
 
     function handleSubmitSearch(e) {
         e.preventDefault();
-        console.log(values);
         onSubmitSearch(values.search);
     };
 
