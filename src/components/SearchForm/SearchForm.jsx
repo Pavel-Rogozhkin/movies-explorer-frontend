@@ -3,13 +3,14 @@ import Form from '../Form/Form';
 import Input from '../Input/Input';
 import Checkbox from '../Checkbox/Checkbox';
 import useFormWithValidation from '../../utils/useFormWithValidation';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 
 function SearchForm({
     onSubmitSearch,
     changeCheckbox,
     isChecked,
     isPageSave,
+    errorMessage,
 }) {
 
     const {
@@ -40,8 +41,10 @@ function SearchForm({
                     place='search'
                     buttonText='Поиск'
                     onSubmit={handleSubmitSearch}
-                    isValid={isValid}
+                    isValid={true}
+                    forValidation={!isValid}
                     isSearchform={true}
+                    errorMessage={errorMessage}
                 >
                     <Input
                         type="text"

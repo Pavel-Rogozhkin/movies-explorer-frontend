@@ -10,6 +10,7 @@ function MoviesList({
     onSaveMovie,
     onDeleteMovie,
     windowWidth,
+    errorMessage,
 }) {
 
     const [moviesList, setMoviesList] = useState(filteredMovies);
@@ -75,7 +76,7 @@ function MoviesList({
                 ))}
             </ul>
             <p className='movies-list__error'>
-                {moviesList.length === 0 ?
+                {moviesList.length === 0 && errorMessage !== '' ?
                     'Ничего не найдено'
                     :
                     ''

@@ -17,6 +17,7 @@ function Movies({
     const [filteredMovies, setFilteredMovies] = useState([]);
     const [searchTask, setSearchTask] = useState('');
     const [isChecked, setIsChecked] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
 
     function changeCheckbox() {
         setIsChecked(!isChecked);
@@ -33,8 +34,8 @@ function Movies({
     };
 
     function handleSubmitSearch(searchTask) {
-        console.log(searchTask);
         if (searchTask) {
+            setErrorMessage(' ');
             setSearchTask(searchTask);
             localStorage.setItem('searchTask', searchTask);
             localStorage.setItem('isChecked', isChecked);
@@ -57,7 +58,7 @@ function Movies({
                 setLoading(false);
             };
         } else {
-            localStorage.setItem('searchTask', searchTask);
+            setErrorMessage('Нужно ввести ключевое слово');
         };
     };
 
@@ -91,6 +92,7 @@ function Movies({
                 changeCheckbox={changeCheckbox}
                 isChecked={isChecked}
                 isPageSave={false}
+                errorMessage={errorMessage}
             />
             {loading ?
                 <Preloader />
@@ -101,6 +103,7 @@ function Movies({
                     savedMovies={savedMovies}
                     onDeleteMovie={onDeleteMovie}
                     windowWidth={windowWidth}
+                    errorMessage={errorMessage}
                 />
             }
         </>
