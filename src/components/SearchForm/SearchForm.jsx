@@ -41,6 +41,7 @@ function SearchForm({
                     buttonText='Поиск'
                     onSubmit={handleSubmitSearch}
                     isValid={isValid}
+                    isSearchform={true}
                 >
                     <Input
                         type="text"
@@ -55,6 +56,7 @@ function SearchForm({
                     changeCheckbox={changeCheckbox}
                     isChecked={isChecked}
                 />
+
             </div>
         </section>
     );

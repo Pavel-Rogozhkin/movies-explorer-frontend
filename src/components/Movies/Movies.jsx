@@ -30,14 +30,10 @@ function Movies({
             :
             moviesToFilter
         );
-        localStorage.setItem('filteredMovies', JSON.stringify(isChecked ? 
-            moviesToFilter.filter(m => m.duration < 40)
-            :
-            moviesToFilter
-        ));
     };
 
     function handleSubmitSearch(searchTask) {
+        console.log(searchTask);
         if (searchTask) {
             setSearchTask(searchTask);
             localStorage.setItem('searchTask', searchTask);
@@ -60,6 +56,8 @@ function Movies({
                 handleFilteredMovies(JSON.parse(localStorage.getItem('movies')), isChecked, searchTask);
                 setLoading(false);
             };
+        } else {
+            localStorage.setItem('searchTask', searchTask);
         };
     };
 

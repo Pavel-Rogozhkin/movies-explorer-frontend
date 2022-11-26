@@ -7,7 +7,8 @@ function Form({
     place,
     buttonText,
     onSubmit,
-    isValid
+    isValid,
+    isSearchform,
 }) {
 
     return (
@@ -18,6 +19,13 @@ function Form({
             onSubmit={onSubmit}
         >
             {children}
+            <p className='form__error'>
+                    {!isValid && isSearchform ?
+                        'Нужно ввести ключевое слово'
+                        :
+                        ''
+                    }
+            </p>
             <Button
                 place={place}
                 buttonText={buttonText}
