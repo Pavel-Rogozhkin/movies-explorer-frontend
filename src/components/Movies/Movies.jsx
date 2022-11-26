@@ -75,7 +75,7 @@ function Movies({
         if (localStorage.getItem('filteredMovies')) {
             setFilteredMovies(JSON.parse(localStorage.getItem('filteredMovies')));
         };
-        if (localStorage.getItem('isChecked') === 'true') {
+        if (localStorage.getItem('isChecked') === true) {
             setIsChecked(true);
         } else {
             setIsChecked(false);

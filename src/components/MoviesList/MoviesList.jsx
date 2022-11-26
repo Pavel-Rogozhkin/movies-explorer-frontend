@@ -50,7 +50,7 @@ function MoviesList({
     useEffect(() => {
         if (isSaveButtonTypeDelete) {
             if (savedMovies) {
-                const list = savedMovies.filter((m, i) => params.curNum > i );
+                const list = filteredMovies.filter((m, i) => params.curNum > i );
                 setMoviesList(list);
             };
         } else {

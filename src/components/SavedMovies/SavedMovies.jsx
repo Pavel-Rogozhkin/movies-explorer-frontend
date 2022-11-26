@@ -9,9 +9,14 @@ function SavedMovies({
     windowWidth,
 }) {
 
+    localStorage.setItem('searchTask', localStorage.getItem('searchTask') || '');
+    localStorage.setItem('isChecked', localStorage.getItem('isChecked') || false);
+
+    // const [savedMovies2, setSavedMovies2] = useState(savedMovies);
     const [filteredMovies, setFilteredMovies] = useState([]);
     const [searchTask, setSearchTask] = useState('');
     const [isChecked, setIsChecked] = useState(false);
+    const [errorMessage, setErrorMessage] = useState('');
 
     function changeCheckbox() {
         setIsChecked(!isChecked);
@@ -25,26 +30,34 @@ function SavedMovies({
             :
             moviesToFilter
         );
-        localStorage.setItem('filteredMovies', JSON.stringify(isChecked ? 
-            moviesToFilter.filter(m => m.duration < 40)
-            :
-            moviesToFilter
-        ));
     };
 
     function handleSubmitSearch(searchTask) {
         if (searchTask) {
+            console.log('searching............');
+            setErrorMessage(' ');
             setSearchTask(searchTask);
+            localStorage.setItem('searchTask', searchTask);
+            localStorage.setItem('isChecked', isChecked);
             handleFilteredMovies(savedMovies, isChecked, searchTask);
+        } else {
+            console.log(' nothint to search!');
+            setErrorMessage('Нужно ввести ключевое слово');
         };
     };
 
     // Re-render hook
-    // useEffect(() => {
-    //     handleFilteredMovies(savedMovies, isChecked, searchTask);
-    // }, [isChecked, searchTask, savedMovies] );
+    useEffect(() => {
+        const task = localStorage.getItem('searchTask');
+        if (task && savedMovies) {
+            handleFilteredMovies(savedMovies, isChecked, task);
+        }
+    }, [isChecked, searchTask, savedMovies] );
 
     useEffect(() => {
+        // if (localStorage.getItem('savedMovies')) {
+        //     setSavedMovies2(JSON.parse(localStorage.getItem('savedMovies')));
+        // };
         if (localStorage.getItem('isChecked') === 'true') {
             setIsChecked(true);
         } else {
@@ -62,6 +75,7 @@ function SavedMovies({
                 changeCheckbox={changeCheckbox}
                 isChecked={isChecked}
                 isPageSave={true}
+                errorMessage={errorMessage}
             />
             <MoviesList
                 filteredMovies={filteredMovies}
@@ -70,6 +84,7 @@ function SavedMovies({
                 savedMovies={savedMovies}
                 onDeleteMovie={onDeleteMovie}
                 windowWidth={windowWidth}
+                errorMessage={errorMessage}
             />
         </>
     );
