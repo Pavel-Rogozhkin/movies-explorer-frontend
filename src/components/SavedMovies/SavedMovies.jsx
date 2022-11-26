@@ -9,11 +9,7 @@ function SavedMovies({
     windowWidth,
 }) {
 
-    localStorage.setItem('searchTask', localStorage.getItem('searchTask') || '');
-    localStorage.setItem('isChecked', localStorage.getItem('isChecked') || false);
-
-    // const [savedMovies2, setSavedMovies2] = useState(savedMovies);
-    const [filteredMovies, setFilteredMovies] = useState([]);
+    const [filteredSavedMovies, setFilteredSavedMovies] = useState(savedMovies);
     const [searchTask, setSearchTask] = useState('');
     const [isChecked, setIsChecked] = useState(false);
     const [errorMessage, setErrorMessage] = useState('');
@@ -25,7 +21,7 @@ function SavedMovies({
 
     function handleFilteredMovies(movies, isChecked, task) {
         const moviesToFilter = movies.filter(m => m.nameRU.toLowerCase().includes(task.toLowerCase()) || m.nameEN.toLowerCase().includes(task.toLowerCase()));
-        setFilteredMovies(isChecked ?
+        setFilteredSavedMovies(isChecked ?
             moviesToFilter.filter(m => m.duration < 40)
             :
             moviesToFilter
@@ -49,15 +45,10 @@ function SavedMovies({
     // Re-render hook
     useEffect(() => {
         const task = localStorage.getItem('searchTask');
-        if (task && savedMovies) {
-            handleFilteredMovies(savedMovies, isChecked, task);
-        }
+        handleFilteredMovies(savedMovies, isChecked, task);
     }, [isChecked, searchTask, savedMovies] );
 
     useEffect(() => {
-        // if (localStorage.getItem('savedMovies')) {
-        //     setSavedMovies2(JSON.parse(localStorage.getItem('savedMovies')));
-        // };
         if (localStorage.getItem('isChecked') === 'true') {
             setIsChecked(true);
         } else {
@@ -78,7 +69,7 @@ function SavedMovies({
                 errorMessage={errorMessage}
             />
             <MoviesList
-                filteredMovies={filteredMovies}
+                filteredMovies={filteredSavedMovies}
                 isButtonMoreUnvisible={true}
                 isSaveButtonTypeDelete={true}
                 savedMovies={savedMovies}

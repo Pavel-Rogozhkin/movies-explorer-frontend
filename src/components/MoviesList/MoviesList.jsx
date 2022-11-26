@@ -47,17 +47,11 @@ function MoviesList({
         };
     }, [] );
 
+    // Re-render hook
     useEffect(() => {
-        if (isSaveButtonTypeDelete) {
-            if (savedMovies) {
-                const list = filteredMovies.filter((m, i) => params.curNum > i );
-                setMoviesList(list);
-            };
-        } else {
-            if (filteredMovies) {
-                const list = filteredMovies.filter((m, i) => params.curNum > i );
-                setMoviesList(list);
-            };
+        if (filteredMovies) {
+            const list = filteredMovies.filter((m, i) => params.curNum > i );
+            setMoviesList(list);
         };
     }, [savedMovies, filteredMovies] );
 

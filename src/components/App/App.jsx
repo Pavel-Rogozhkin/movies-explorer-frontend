@@ -46,6 +46,9 @@ function App() {
             .finally(() => {
                 setLoading(false);
             });
+            
+        localStorage.setItem('searchTask', localStorage.getItem('searchTask') || '');
+        localStorage.setItem('isChecked', localStorage.getItem('isChecked') || false);
 
         };
     }, [loggedIn, currentUser] );
