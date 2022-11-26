@@ -45,7 +45,7 @@ function MoviesList({
                 moreNum: 1,
             });
         };
-    }, [] );
+    }, [windowWidth, params.curNum] );
 
     // Re-render hook
     useEffect(() => {
@@ -53,7 +53,7 @@ function MoviesList({
             const list = filteredMovies.filter((m, i) => params.curNum > i );
             setMoviesList(list);
         };
-    }, [savedMovies, filteredMovies] );
+    }, [savedMovies, filteredMovies, params.curNum] );
 
     return (
         <section className='movies-list__container'>

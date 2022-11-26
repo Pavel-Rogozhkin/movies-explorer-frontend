@@ -19,7 +19,7 @@ function SavedMovies({
         localStorage.setItem('isChecked', !isChecked);
     };
 
-    function handleFilteredMovies(movies, isChecked, task) {
+    function handleFilteredSavedMovies(movies, isChecked, task) {
         const moviesToFilter = movies.filter(m => m.nameRU.toLowerCase().includes(task.toLowerCase()) || m.nameEN.toLowerCase().includes(task.toLowerCase()));
         setFilteredSavedMovies(isChecked ?
             moviesToFilter.filter(m => m.duration < 40)
@@ -30,22 +30,19 @@ function SavedMovies({
 
     function handleSubmitSearch(searchTask) {
         if (searchTask) {
-            console.log('searching............');
             setErrorMessage(' ');
             setSearchTask(searchTask);
-            localStorage.setItem('searchTask', searchTask);
-            localStorage.setItem('isChecked', isChecked);
-            handleFilteredMovies(savedMovies, isChecked, searchTask);
+            // localStorage.setItem('searchTask', searchTask);
+            // localStorage.setItem('isChecked', isChecked);
+            handleFilteredSavedMovies(savedMovies, isChecked, searchTask);
         } else {
-            console.log(' nothint to search!');
             setErrorMessage('Нужно ввести ключевое слово');
         };
     };
 
     // Re-render hook
     useEffect(() => {
-        const task = localStorage.getItem('searchTask');
-        handleFilteredMovies(savedMovies, isChecked, task);
+        handleFilteredSavedMovies(savedMovies, isChecked, searchTask);
     }, [isChecked, searchTask, savedMovies] );
 
     useEffect(() => {

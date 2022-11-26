@@ -3,7 +3,7 @@ import Form from '../Form/Form';
 import Input from '../Input/Input';
 import Checkbox from '../Checkbox/Checkbox';
 import useFormWithValidation from '../../utils/useFormWithValidation';
-import { useEffect, useState } from 'react';
+import { useEffect } from 'react';
 
 function SearchForm({
     onSubmitSearch,
