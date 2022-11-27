@@ -10,6 +10,7 @@ import { EMAIL_REGEX } from '../../utils/consts';
 function Login({
     onLogin,
     loading,
+    errorMessage,
 }) {
 
     const {
@@ -37,7 +38,7 @@ function Login({
             </h2>
             <Form
                 onSubmit={handleSubmitLogin}
-                isValid={isValid}
+                isValid={isValid || !loading}
                 name='login'
                 place='login'
                 buttonText={loading ?
@@ -45,6 +46,7 @@ function Login({
                     :
                     'Войти'
                 }
+                errorMessage={errorMessage}
             >
                 <Input 
                     place='login'

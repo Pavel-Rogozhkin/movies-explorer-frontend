@@ -8,8 +8,6 @@ function Form({
     buttonText,
     onSubmit,
     isValid,
-    forValidation,
-    isSearchform,
     errorMessage,
 }) {
 

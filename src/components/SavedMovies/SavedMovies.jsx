@@ -2,6 +2,7 @@ import './SavedMovies.css';
 import SearchForm from '../SearchForm/SearchForm';
 import MoviesList from '../MoviesList/MoviesList';
 import { useState, useEffect } from "react";
+import { SHORT_MOVIES_DURATION } from '../../utils/consts';
 
 function SavedMovies({
     savedMovies,
@@ -22,7 +23,7 @@ function SavedMovies({
     function handleFilteredSavedMovies(movies, isChecked, task) {
         const moviesToFilter = movies.filter(m => m.nameRU.toLowerCase().includes(task.toLowerCase()) || m.nameEN.toLowerCase().includes(task.toLowerCase()));
         setFilteredSavedMovies(isChecked ?
-            moviesToFilter.filter(m => m.duration < 40)
+            moviesToFilter.filter(m => m.duration < SHORT_MOVIES_DURATION)
             :
             moviesToFilter
         );
@@ -32,8 +33,6 @@ function SavedMovies({
         if (searchTask) {
             setErrorMessage(' ');
             setSearchTask(searchTask);
-            // localStorage.setItem('searchTask', searchTask);
-            // localStorage.setItem('isChecked', isChecked);
             handleFilteredSavedMovies(savedMovies, isChecked, searchTask);
         } else {
             setErrorMessage('Нужно ввести ключевое слово');

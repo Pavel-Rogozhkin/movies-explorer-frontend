@@ -23,6 +23,7 @@ function App() {
     const [loggedIn, setLoggedIn] = useState(localStorage.getItem('loggedIn'));
     const [loading,  setLoading] = useState(false);
     const [savedMovies, setSavedMovies] = useState([]);
+    const [errorMessage, setErrorMessage] = useState('');
     
     const windowWidth = useWindowSize().width;
 
@@ -87,9 +88,11 @@ function App() {
         MainApi.setUserInfo(data)
             .then(user => {
                 setCurrentUser(user);
+                setErrorMessage(' ');
             })
             .catch(error => {
                 console.log(error);
+                setErrorMessage('При обновлении профиля произошла ошибка.');
             })
             .finally(() => {
                 setLoading(false);
@@ -154,6 +157,7 @@ function App() {
         setLoading(true);
         MainApi.register({ name, email, password })
             .then(() => {
+                setErrorMessage(' ');
                 handleAuth({
                     name,
                     email,
@@ -162,6 +166,7 @@ function App() {
             })
             .catch(error => {
                 console.log(error);
+                setErrorMessage('При регистрации пользователя произошла ошибка.');
             })
             .finally(() => {
                 setLoading(false);
@@ -172,6 +177,7 @@ function App() {
         setLoading(true);
         MainApi.auth({ email, password })
             .then(res => {
+                setErrorMessage(' ');
                 setCurrentUser({
                     name: res.data.name,
                     email: res.data.email,
@@ -182,6 +188,7 @@ function App() {
             })
             .catch(error => {
                 console.log(error);
+                setErrorMessage('При авторизации произошла ошибка.');
             })
             .finally(() => {
                 setLoading(false);
@@ -190,13 +197,17 @@ function App() {
 
     // render:
     return (
+
         <CurrentUserContext.Provider 
             value={currentUser}
         >
+
             <Header 
                 loggedIn={loggedIn}
             />
+
             <main className='main'>
+
                 <Switch>
 
                     <Route exact path='/'>
@@ -234,6 +245,7 @@ function App() {
                         loading={loading}
                         onSetUserInfo={handleSetUserInfo}
                         onSignOut={handleSingOut}
+                        errorMessage={errorMessage}
                     />
 
                     <Route path='/signup'>
@@ -243,6 +255,7 @@ function App() {
                             <Register
                                 onRegister={handleRegister}
                                 loading={loading}
+                                errorMessage={errorMessage}
                             />
                         }
                     </Route>
@@ -254,6 +267,7 @@ function App() {
                             <Login
                                 onLogin={handleAuth}
                                 loading={loading}
+                                errorMessage={errorMessage}
                             />
                         }
                     </Route>
@@ -268,9 +282,13 @@ function App() {
                     </Route>
 
                 </Switch>
+
             </main>
+
             <Footer />
+
         </CurrentUserContext.Provider>
+
     );
 
 };

@@ -1,6 +1,7 @@
 import './MoviesList.css';
 import MovieItem from '../MovieItem/MovieItem';
 import { useState, useEffect } from 'react';
+import { MAX_WIDTH, MID_WIDTH, MAX_CURNUM, MID_CURNUM, MIN_CURNUM, MAX_MORENUM, MID_MORENUM, MIN_MORENUM } from '../../utils/consts';
 
 function MoviesList({
     filteredMovies,
@@ -14,7 +15,7 @@ function MoviesList({
 }) {
 
     const [moviesList, setMoviesList] = useState(filteredMovies);
-    const [params, setParams] = useState({ curNum: 12, moreNum: 3 });
+    const [params, setParams] = useState({ curNum: MAX_CURNUM, moreNum: MAX_MORENUM });
 
     function handleMore() {
         if ((filteredMovies.length - moviesList.length) > 0) {
@@ -27,22 +28,22 @@ function MoviesList({
     };
 
     useEffect(() => {
-        if (windowWidth > 1279) {
+        if (windowWidth > MAX_WIDTH) {
             setParams({
-                curNum: 12,
-                moreNum: 3,
+                curNum: MAX_CURNUM,
+                moreNum: MAX_MORENUM,
             });
         }
-        if (windowWidth > 481 && windowWidth <= 1279) {
+        if (windowWidth > MID_WIDTH && windowWidth <= MAX_WIDTH) {
             setParams({
-                curNum: 8,
-                moreNum: 2,
+                curNum: MID_CURNUM,
+                moreNum: MID_MORENUM,
             });
         }
-        if (windowWidth <= 481) {
+        if (windowWidth <= MID_WIDTH) {
             setParams({
-                curNum: 5,
-                moreNum: 1,
+                curNum: MIN_CURNUM,
+                moreNum: MIN_MORENUM,
             });
         };
     }, [windowWidth, params.curNum] );

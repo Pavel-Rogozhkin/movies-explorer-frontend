@@ -11,6 +11,7 @@ function Profile({
     loading,
     onSetUserInfo,
     onSignOut,
+    errorMessage,
 }) {
 
     const currentUser = useContext(CurrentUserContext);
@@ -67,7 +68,8 @@ function Profile({
                     'Редактировать'
                 }
                 onSubmit={handleSubmitProfile}
-                isValid={isValidProfile}
+                isValid={isValidProfile || !loading}
+                errorMessage={errorMessage}
             >
                 <Input 
                     place='profile'

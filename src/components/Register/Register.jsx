@@ -10,6 +10,7 @@ import { NAME_REGEX, EMAIL_REGEX } from '../../utils/consts';
 function Register({
     onRegister,
     loading,
+    errorMessage,
 }) {
 
     const {
@@ -37,7 +38,7 @@ function Register({
             </h2>
             <Form
                 onSubmit={handleSubmitRegister}
-                isValid={isValid}
+                isValid={isValid || !loading}
                 name='register'
                 place='register'
                 buttonText={loading ?
@@ -45,6 +46,7 @@ function Register({
                     :
                     'Зарегистрироваться'
                 }
+                errorMessage={errorMessage}
             >
                 <Input 
                     place='register'

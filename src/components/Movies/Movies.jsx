@@ -4,6 +4,7 @@ import MoviesList from '../MoviesList/MoviesList';
 import Preloader from '../Preloader/Preloader';
 import { useState, useEffect } from "react";
 import MoviesApi from '../../utils/MoviesApi';
+import { SHORT_MOVIES_DURATION } from '../../utils/consts';
 
 function Movies({
     savedMovies,
@@ -27,7 +28,7 @@ function Movies({
     function handleFilteredMovies(movies, isChecked, task) {
         const moviesToFilter = movies.filter(m => m.nameRU.toLowerCase().includes(task.toLowerCase()) || m.nameEN.toLowerCase().includes(task.toLowerCase()));
         setFilteredMovies(isChecked ? 
-            moviesToFilter.filter(m => m.duration < 40)
+            moviesToFilter.filter(m => m.duration < SHORT_MOVIES_DURATION)
             :
             moviesToFilter
         );
