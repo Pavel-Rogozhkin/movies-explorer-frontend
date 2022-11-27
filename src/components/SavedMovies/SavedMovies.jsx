@@ -17,7 +17,6 @@ function SavedMovies({
 
     function changeCheckbox() {
         setIsChecked(!isChecked);
-        localStorage.setItem('isChecked', !isChecked);
     };
 
     function handleFilteredSavedMovies(movies, isChecked, task) {
@@ -43,17 +42,6 @@ function SavedMovies({
     useEffect(() => {
         handleFilteredSavedMovies(savedMovies, isChecked, searchTask);
     }, [isChecked, searchTask, savedMovies] );
-
-    useEffect(() => {
-        if (localStorage.getItem('isChecked') === 'true') {
-            setIsChecked(true);
-        } else {
-            setIsChecked(false);
-        };
-        if (localStorage.getItem('searchTask')) {
-            setSearchTask(localStorage.getItem('searchTask'));
-        };
-    }, [] );
 
     return (
         <>
