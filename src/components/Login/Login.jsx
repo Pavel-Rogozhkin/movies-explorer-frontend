@@ -38,7 +38,7 @@ function Login({
             </h2>
             <Form
                 onSubmit={handleSubmitLogin}
-                isValid={isValid || !loading}
+                isValid={isValid && !loading}
                 name='login'
                 place='login'
                 buttonText={loading ?

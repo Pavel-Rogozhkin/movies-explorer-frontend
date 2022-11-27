@@ -68,7 +68,7 @@ function Profile({
                     'Редактировать'
                 }
                 onSubmit={handleSubmitProfile}
-                isValid={isValidProfile || !loading}
+                isValid={isValidProfile && !loading}
                 errorMessage={errorMessage}
             >
                 <Input 

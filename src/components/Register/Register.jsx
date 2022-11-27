@@ -38,7 +38,7 @@ function Register({
             </h2>
             <Form
                 onSubmit={handleSubmitRegister}
-                isValid={isValid || !loading}
+                isValid={isValid && !loading}
                 name='register'
                 place='register'
                 buttonText={loading ?
