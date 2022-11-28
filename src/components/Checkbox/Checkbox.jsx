@@ -1,13 +1,9 @@
 import './Checkbox.css';
-import { useState } from 'react';
 
-function Checkbox() {
-
-    const [isChecked, setIsChecked] = useState(false);
-
-    const handleCheckbox = () => {
-        setIsChecked(!isChecked);
-    };
+function Checkbox({
+    changeCheckbox,
+    isChecked,
+}) {
 
     return (
         <div className='checkbox__container'>
@@ -15,7 +11,7 @@ function Checkbox() {
                 className='checkbox'
                 type='checkbox'
                 checked={isChecked}
-                onChange={handleCheckbox}
+                onChange={changeCheckbox}
                 id='shortMoviesFilter'
             />
             <label

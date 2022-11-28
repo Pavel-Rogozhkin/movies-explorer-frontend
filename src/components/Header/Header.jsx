@@ -3,7 +3,7 @@ import { Route } from 'react-router-dom';
 import Navigation from '../Navigation/Navigation';
 import Logo from '../Logo/Logo';
 
-function Header() {
+function Header({ loggedIn }) {
 
     const paths = [
         '/movies',
@@ -17,7 +17,10 @@ function Header() {
                 <>
                     <header className='header'>
                         <Logo />
-                        <Navigation />
+                        <Navigation 
+                            loggedIn={loggedIn}
+                            isPageMain={false}
+                        />
                     </header>
                 </>
             </Route>
@@ -27,6 +30,7 @@ function Header() {
                     <header className='header header__main-page'>
                         <Logo />
                         <Navigation
+                            loggedIn={loggedIn}
                             isPageMain={true}
                         />
                     </header>

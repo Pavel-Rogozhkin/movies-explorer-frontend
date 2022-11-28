@@ -31,6 +31,16 @@
     border-radius: 3px;
     background-color: #202020;
     color: #FFF;
+    cursor: pointer;
+}
+
+.movies-list__error {
+    display: block;
+    height: 12px;
+    font-size: 10px;
+    line-height: 12px;
+    color: #EE3465;
+    text-align: center;
 }
 
 .movies-list__more_unvisible {

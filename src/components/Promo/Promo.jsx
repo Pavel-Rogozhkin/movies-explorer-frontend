@@ -15,7 +15,7 @@ function Promo() {
                     </p>
                     <a 
                         className='promo__link'
-                        href='/#'
+                        href='#about-project'
                     >
                         Узнать больше
                     </a>

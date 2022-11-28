@@ -1,12 +1,20 @@
 import './Button.css';
 
-function Button({ place, buttonText }) {
+function Button({
+    place,
+    buttonText,
+    isValid,
+    type,
+    onClick,
+}) {
 
     return (
         <button
-            className={`button button_place_${place}`}
+            className={`button button_place_${place} ${(isValid || (place === 'search')) ? '' : 'button_disabled'}`}
             aria-label={buttonText}
-            type='submit'
+            type={type || 'submit'}
+            disabled={!isValid}
+            onClick={onClick}
         >
             {buttonText}
         </button>

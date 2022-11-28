@@ -48,6 +48,7 @@
     font-size: 18px;
     line-height: 20px;
     background-color: #202020;
+    color: #FFF;
 }
 
 .input_place_profile {
@@ -95,6 +96,10 @@
 
 .input__error_place_search {
     display: none;
+}
+
+.input__error_place_profile {
+    margin: 2px 0 12px calc(50% - 235px);
 }
 
 @media screen and (max-width: 559px) {

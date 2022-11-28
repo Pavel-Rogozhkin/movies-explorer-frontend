@@ -5,7 +5,10 @@ import AboutProjectItem from '../AboutProjectItem/AboutProjectItem';
 function AboutProject() {
 
     return (
-        <section className='about-project'>
+        <section
+            className='about-project'
+            id='about-project'
+        >
             <Caption text='О проекте' />
             <ul className="about-project__list">
                 <AboutProjectItem
